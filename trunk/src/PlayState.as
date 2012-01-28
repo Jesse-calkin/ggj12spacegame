@@ -15,11 +15,13 @@ package
 			var background:FlxSprite = new FlxSprite(0, 0, level1backgroundImg);
 			add(background);
 			
-			var bluePlanet:FlxSprite = new FlxSprite(200 - 55 / 2, (FlxG.height / 2) - 55 / 2, bluePlanetImg);
-			add(bluePlanet);
+			Registry.player1Planet = new FlxSprite(200 - 55 / 2, (FlxG.height / 2) - 55 / 2, bluePlanetImg);
+			Registry.player1health = 100;
+			add(Registry.player1Planet);
 			
-			var orangePlanet:FlxSprite = new FlxSprite(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, orangePlanetImg);
-			add(orangePlanet);
+			Registry.player2Planet = new FlxSprite(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, orangePlanetImg);
+			Registry.player2health = 100;
+			add(Registry.player2Planet);
 		}
 		
 		override public function update():void
