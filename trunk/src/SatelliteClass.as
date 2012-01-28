@@ -9,20 +9,31 @@ package
 	{
 		public var radius:Number = 30;
 		public var speed:Number = 1;
-		public var xcenter:int = Registry.player1Planet.x + (Registry.player1Planet.width / 2);
-		public var ycenter:int = Registry.player1Planet.y + (Registry.player1Planet.height / 2);
+		public var xcenter:int;
+		public var ycenter:int
 		public var degree:Number = 0;
 		public var radian:Number;
 		
-		public function SatelliteClass(X:Number = 0, Y:Number = 0, SimpleGraphic:Class = null)
+		public function SatelliteClass(Player:uint, X:Number = 0, Y:Number = 0, SimpleGraphic:Class = null)
 		{
 			super(X, Y, SimpleGraphic);
+			
+			if (Player == 1)
+			{
+				xcenter = Registry.player1Planet.x + (Registry.player1Planet.width / 2);
+				ycenter = Registry.player1Planet.y + (Registry.player1Planet.height / 2);
+			}
+			else
+			{
+				xcenter = Registry.player2Planet.x + (Registry.player2Planet.width / 2);
+				ycenter = Registry.player2Planet.y + (Registry.player2Planet.height / 2);
+			}
 		}
 		
 		public function MoveClockwise():void
 		{
 			degree -= speed;
-			trace(degree);
+			angle = degree + 90;
 			radian = (degree / 180) * Math.PI;
 			x = xcenter + Math.cos(radian) * radius;
 			y = ycenter - Math.sin(radian) * radius;
@@ -31,6 +42,7 @@ package
 		public function MoveCounterclockwise():void
 		{
 			degree += speed;
+			angle = degree + 90;
 			radian = (degree / 180) * Math.PI;
 			x = xcenter + Math.cos(radian) * radius;
 			y = ycenter - Math.sin(radian) * radius;

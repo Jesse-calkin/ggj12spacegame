@@ -25,11 +25,14 @@ package
 			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 			
-			Registry.Satellite = new SatelliteClass(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
-			add(Registry.Satellite);
+			Registry.player1Satellite = new SatelliteClass(1, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			add(Registry.player1Satellite);
+			
+			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			add(Registry.player2Satellite);
 			
 			//Should move this to player + allow switching weapons via powerups
-			_rocketLauncher = new RocketLauncher(Registry.Satellite);
+			_rocketLauncher = new RocketLauncher(Registry.player1Satellite);
 			add(_rocketLauncher.group);
 			
 			_alienGroup = new FlxGroup(500);
@@ -46,14 +49,27 @@ package
 		
 		public function getInput():void //TODO: set up player 1 controls (WASD)
 		{
+			Registry.player1Satellite.velocity.x = 0;
+			Registry.player1Satellite.velocity.y = 0;
+			
+			if (FlxG.keys.A)
+			{
+				Registry.player1Satellite.MoveClockwise();
+			}
+			
+			if (FlxG.keys.D)
+			{
+				Registry.player1Satellite.MoveCounterclockwise();
+			}
+			
 			if (FlxG.keys.RIGHT)
 			{
-				Registry.Satellite.MoveClockwise();
+				Registry.player2Satellite.MoveClockwise();
 			}
 			
 			if (FlxG.keys.LEFT)
 			{
-				Registry.Satellite.MoveCounterclockwise();
+				Registry.player2Satellite.MoveCounterclockwise();
 			}
 			
 			if (FlxG.keys.justPressed("UP"))
