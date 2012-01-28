@@ -1,6 +1,8 @@
 package  
 {
-	import org.flixel.FlxSprite;
+	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxFlectrum;
+	
 	import org.flixel.FlxG;
 	import Weapons.RocketLauncher;
 	
@@ -10,12 +12,12 @@ package
 	 */
 	public class SatelliteClass extends FlxSprite
 	{
-		public var radius:Number = 30;
+		public var radius:Number = 55;
 		public var speed:Number = 1;
-		public var xcenter:int;
-		public var ycenter:int
-		public var degree:Number = 0;
-		public var radian:Number;
+		public var xcenter:Number;
+		public var ycenter:Number;
+		public var degree:Number = 270;
+		public var radian:Number = (degree / 180) * Math.PI;
 		
 		public var _rocketLauncher:RocketLauncher;
 		
@@ -24,36 +26,62 @@ package
 			super(X, Y, SimpleGraphic);
 
 			//loadRotatedGraphic(SimpleGraphic, 360,
+			trace(origin.x + " " + origin.y);
+			origin.x = 0;
+			origin.y = 0;
+			trace(origin.x + " " + origin.y);
+			
+			radius = 100;
+			
 			if (Player == 1)
 			{
-				xcenter = Registry.player1Planet.x + (Registry.player1Planet.width / 2);
-				ycenter = Registry.player1Planet.y + (Registry.player1Planet.height / 2);
+				xcenter = Registry.player1Planet.getMidpoint().x;
+				ycenter = Registry.player1Planet.getMidpoint().y;
 			}
 			else
 			{
-				xcenter = Registry.player2Planet.x + (Registry.player2Planet.width / 2);
-				ycenter = Registry.player2Planet.y + (Registry.player2Planet.height / 2);
+				xcenter = Registry.player2Planet.getMidpoint().x;
+				ycenter = Registry.player2Planet.getMidpoint().y;
 			}
+			
+			angle = 270;
+			x = xcenter + Math.cos(radian) * radius / 2;
+			y = ycenter + Math.sin(radian) * radius / 2;
 			
 			_rocketLauncher = new RocketLauncher(this)
 		}
 		
 		public function MoveClockwise():void
 		{
-			degree -= speed;
-			angle = degree + 40;
+			//var _endpointX:Number;
+			//var _endpointY:Number;
+			//var _arrowRadians:Number;
+			//
+			//_arrowRadians = angle * (Math.PI / 180);   //"angle" is arrow angle in degrees
+			//_endpointX = x + (width*.5) - (_hypotenuse * (Math.cos(Math.PI - _theta - _arrowRadians)));
+			//_endpointY = y + (height * .5) + (_hypotenuse * (Math.sin(_theta + _arrowRadians)));
+			//
+			//x = _endpointX;
+			//y = _endpointY;
+			
+			degree += speed;
+			degree %= 360;
 			radian = (degree / 180) * Math.PI;
-			x = xcenter + Math.cos(radian) * radius;
-			y = ycenter - Math.sin(radian) * radius;
+			angle = degree;
+			
+			x = xcenter + Math.cos(radian) * radius / 2;
+			y = ycenter + Math.sin(radian) * radius / 2;
 		}
 		
 		public function MoveCounterclockwise():void
 		{
-			degree += speed;
-			angle = degree + 40;
+			degree -= speed;
+			degree %= 360;
 			radian = (degree / 180) * Math.PI;
-			x = xcenter + Math.cos(radian) * radius;
-			y = ycenter - Math.sin(radian) * radius;
+			angle = degree;
+			
+			x = xcenter + Math.cos(radian) * radius / 2;
+			y = ycenter + Math.sin(radian) * radius / 2;
 		}
 		
 		public function Fire():void
