@@ -56,7 +56,10 @@ package
 		
 		public function Fire():void
 		{
-			_rocketLauncher.fireFromParentAngle();
+			//trace("X: " + x);
+			//trace("Y: " + y);
+			//trace("D: " + degree);
+			_rocketLauncher.fireFromAngle(degree);
 		}
 		
 	}
