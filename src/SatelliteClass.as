@@ -1,6 +1,8 @@
 package  
 {
 	import org.flixel.FlxSprite;
+	import Weapons.RocketLauncher;
+	
 	/**
 	 * ...
 	 * @author B-Dog
@@ -13,6 +15,8 @@ package
 		public var ycenter:int
 		public var degree:Number = 0;
 		public var radian:Number;
+		
+		public var _rocketLauncher:RocketLauncher;
 		
 		public function SatelliteClass(Player:uint, X:Number = 0, Y:Number = 0, SimpleGraphic:Class = null)
 		{
@@ -28,6 +32,8 @@ package
 				xcenter = Registry.player2Planet.x + (Registry.player2Planet.width / 2);
 				ycenter = Registry.player2Planet.y + (Registry.player2Planet.height / 2);
 			}
+			
+			_rocketLauncher = new RocketLauncher(this)
 		}
 		
 		public function MoveClockwise():void
@@ -46,6 +52,11 @@ package
 			radian = (degree / 180) * Math.PI;
 			x = xcenter + Math.cos(radian) * radius;
 			y = ycenter - Math.sin(radian) * radius;
+		}
+		
+		public function Fire():void
+		{
+			_rocketLauncher.fireFromParentAngle();
 		}
 		
 	}

@@ -32,8 +32,9 @@ package
 			add(Registry.player2Satellite);
 			
 			//Should move this to player + allow switching weapons via powerups
-			_rocketLauncher = new RocketLauncher(Registry.player1Satellite);
-			add(_rocketLauncher.group);
+			//_rocketLauncher = new RocketLauncher(Registry.player1Satellite);
+			add(Registry.player1Satellite._rocketLauncher.group);
+			add(Registry.player2Satellite._rocketLauncher.group);
 			
 			alienGroup = new FlxGroup(500);
 			alienGroup.add(new AlienClass(1));
@@ -43,7 +44,7 @@ package
 		
 		override public function update():void
 		{
-			getInput();
+			getInput();			
 			super.update();
 		}	
 		
@@ -62,6 +63,11 @@ package
 				Registry.player1Satellite.MoveCounterclockwise();
 			}
 			
+			if (FlxG.keys.W)
+			{
+				Registry.player1Satellite.Fire();
+			}
+			
 			if (FlxG.keys.RIGHT)
 			{
 				Registry.player2Satellite.MoveClockwise();
@@ -74,9 +80,9 @@ package
 			
 			if (FlxG.keys.justPressed("UP"))
 			{
-				_rocketLauncher.fireFromAngle(0); // pelt the orange planet...for now...
-				//trace("Fire!");
+				Registry.player2Satellite.Fire();
 			}
+			
 		}
 		
 		public function isGameOver():Boolean
