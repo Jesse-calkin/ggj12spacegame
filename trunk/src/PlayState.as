@@ -12,6 +12,8 @@ package
 		{
 			FlxG.bgColor = 0xffaaaaaa;
 			
+			FlxG.stream("../data/sounds/music/Theme.mp3",0.5,true);
+			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
 			
