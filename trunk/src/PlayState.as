@@ -7,7 +7,7 @@ package
 	
 	public class PlayState extends FlxState
 	{	
-		public static var alienGroup:FlxGroup;		
+		public static var alienGroup:FlxGroup;	
 		
 		private var testCircle:FlxSprite = new FlxSprite();
 		
