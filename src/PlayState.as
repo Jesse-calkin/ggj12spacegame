@@ -8,6 +8,7 @@ package
 	public class PlayState extends FlxState
 	{	
 		public static var alienGroup:FlxGroup;	
+		//private var asteroid:AsteroidClass;
 		
 		private var testCircle:FlxSprite = new FlxSprite();
 		
@@ -46,6 +47,9 @@ package
 			//add(_rocketLauncher.group);
 			add(Registry.player1Satellite._rocketLauncher.group);
 			add(Registry.player2Satellite._rocketLauncher.group);
+			
+			//asteroid = new AsteroidClass();
+			//add(asteroid);
 			
 			alienGroup = new FlxGroup(100);
 			alienGroup.add(new AlienClass(1));
