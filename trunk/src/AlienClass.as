@@ -15,7 +15,7 @@ package
 		private const _Planet2XPos:uint = Registry.player2Planet.x + Registry.player2Planet.width/2;
 		private const _Planet2YPos:uint = Registry.player2Planet.y + Registry.player2Planet.height/2;
 		private const _StartingHealth:uint = 1;
-		private const _OnDeathExtraSpawnPercent:uint = 10;
+		private const _OnDeathExtraSpawnPercent:uint = 20;
 		private const _HoldingPositionX:int = 100;
 		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
@@ -315,7 +315,7 @@ package
 			_clockwiseRotation = true;
 			if (_alienGun.currentBullet != null)
 			{
-				_alienGun.currentBullet.revive();
+				_alienGun.currentBullet.reset(x, y);
 			}
 		}
 		
