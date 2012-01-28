@@ -8,6 +8,9 @@ package
 		//TODO: Move to player
 		private var _rocketLauncher:RocketLauncher;
 		
+		private var alien1:AlienClass;
+		private var alien2:AlienClass;
+		
 		override public function create():void
 		{
 			FlxG.bgColor = 0xffaaaaaa;
@@ -29,6 +32,11 @@ package
 			//Should move this to player + allow switching weapons via powerups
 			_rocketLauncher = new RocketLauncher(Registry.Satellite);
 			add(_rocketLauncher.group);
+			
+			alien1 = new AlienClass(1);
+			add(alien1);
+			alien2 = new AlienClass(2);
+			add(alien2);
 		}
 		
 		override public function update():void
@@ -37,7 +45,7 @@ package
 			super.update();
 		}	
 		
-		public function getInput():void
+		public function getInput():void //set up player 1 controls (WASD)
 		{
 			if (FlxG.keys.RIGHT)
 			{
@@ -55,7 +63,7 @@ package
 				Registry.Satellite.y = Registry.Satellite.ycenter-Math.sin(Registry.Satellite.radian)*Registry.Satellite.radius;
 			}
 			
-			if (FlxG.keys.justPressed("SPACE"))
+			if (FlxG.keys.justPressed("UP"))
 			{
 				_rocketLauncher.fireFromAngle(0); // pelt the orange planet...for now...
 				trace("Fire!");
