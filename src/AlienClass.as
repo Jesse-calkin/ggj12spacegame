@@ -1,6 +1,7 @@
 package  
 {
 	import org.flixel.*;
+	import org.flixel.plugin.photonstorm.FlxWeapon;
 	/**
 	 * ...
 	 * @author Lachlan McInnes
@@ -24,6 +25,7 @@ package
 		private const _SpawnDistanceFromScreenX:uint = 15;
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
+		private const _AlienBulletDamageToPlanet:uint = 20;
 		
 		//Variables
 		private var _targetPlayer:uint;
@@ -31,6 +33,7 @@ package
 		private var _fireDelayTimer:Number;
 		private var _nextFireTime:Number;
 		private var _clockwiseRotation:Boolean;
+		private var _alienGun:FlxWeapon;
 		public var isActive:Boolean;
 		
 		public function AlienClass(targetPlayer:uint = 0)
@@ -49,6 +52,13 @@ package
 			loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
 			addAnimation("Move", [0,1,2,3], 10);
 			play("Move");
+			
+			_alienGun = new FlxWeapon("alienGun", this);
+			_alienGun.makeImageBullet(1, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
+			_alienGun.setBulletSpeed(120);
+			_alienGun.setBulletAcceleration(10, 10, 130, 130);
+			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
+			FlxG.state.add(_alienGun.group);
 		}
 		
 		override public function update():void 
@@ -67,9 +77,9 @@ package
 				else
 				{
 					//TODO: CHANGE! Put straifing and fireing AI here
-					takeDamage(1); //testing only
+					//takeDamage(1); //testing only
 					
-					//inRangeCombatAI();  //<------------------------------------------------------------------<
+					inRangeCombatAI();  //<------------------------------------------------------------------<
 				}
 				
 				//draw();
@@ -120,11 +130,67 @@ package
 				_fireDelayTimer = 0.0;
 				setNextFireTime();
 			}
+			
+			checkBulletCollision();
 		}
 		
 		private function fireShot():void
 		{
-			
+			if (Registry.player1Planet.alive && Registry.player2Planet.alive)
+			{
+				_alienGun.fireAtTarget(new FlxSprite(getPlanetXPosition(), getPlanetYPosition()));
+			}
+		}
+		
+		private function checkBulletCollision():void
+		{
+			if (_alienGun.currentBullet != null)
+			{
+				var tempXDifference:uint = 0;
+				var tempYDifference:uint = 0;
+				
+				if (_alienGun.currentBullet.x < getPlanetXPosition())
+				{
+					tempXDifference = getPlanetXPosition() - _alienGun.currentBullet.x;
+				}
+				else if (_alienGun.currentBullet.x > getPlanetXPosition())
+				{
+					tempXDifference = _alienGun.currentBullet.x - getPlanetXPosition();
+				}
+				
+				if (_alienGun.currentBullet.y < getPlanetYPosition())
+				{
+					tempYDifference = getPlanetYPosition() - _alienGun.currentBullet.y;
+				}
+				else if (_alienGun.currentBullet.y > getPlanetYPosition())
+				{
+					tempYDifference = _alienGun.currentBullet.y - getPlanetYPosition();
+				}
+				
+				if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 30)
+				{
+					switch(_targetPlayer)
+					{
+					case 1:
+						Registry.player1Planet.health -= _AlienBulletDamageToPlanet;
+						if (Registry.player1Planet.health <= 0 && Registry.player2Planet.alive)
+						{
+							Registry.player1Planet.kill();
+						}
+						break;
+					case 2:
+						Registry.player2Planet.health -= _AlienBulletDamageToPlanet;
+						if (Registry.player2Planet.health <= 0 && Registry.player1Planet.alive)
+						{
+							Registry.player2Planet.kill();
+						}
+						break;
+					}
+					_alienGun.currentBullet.kill();
+					_alienGun.currentBullet.x = 99999;
+					_alienGun.currentBullet.y = 99999;
+				}
+			}
 		}
 		
 		public function takeDamage(damage:Number):void
@@ -136,7 +202,7 @@ package
 				//spawn aliens on enemy
 				if (FlxG.random() > ((100 - _OnDeathExtraSpawnPercent) / 100))
 				{
-					PlayState._alienGroup.add(new AlienClass(getNontargetPlayer()));
+					PlayState.alienGroup.add(new AlienClass(getNontargetPlayer()));
 				}
 				
 				//kill alien
@@ -280,7 +346,6 @@ package
 		{
 			return _targetPlayer;
 		}
-		
 		
 		private function getNontargetPlayer():uint
 		{
