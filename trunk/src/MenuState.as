@@ -6,10 +6,20 @@ package
 	{
 		override public function create():void
 		{
-			var title:FlxText;
-			title = new FlxText(0, 16, FlxG.width, "Game Title");
-			title.setFormat (null, 16, 0xFFFFFFFF, "center");
-			add(title);
+			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);
+			add(background);
+			
+			var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
+			add(newgame);
+			
+			var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
+			add(controls);
+			
+			var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
+			add(credits);
+				
+
+
  
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Play");

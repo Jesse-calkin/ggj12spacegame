@@ -9,5 +9,12 @@ package
 		[Embed(source = "../data/gfx/Snake.png")] public static var snakeImg:Class;
 		[Embed(source = "../data/gfx/Satellite.png")] public static var satelliteImg:Class;
 		[Embed(source = "../data/gfx/Rocket.png")] public static var rocketImg:Class;
+		[Embed(source = "../data/gfx/controls.png")] public static var controlsImg:Class;
+		[Embed(source = "../data/gfx/controls-sel.png")] public static var controlsSelImg:Class;
+		[Embed(source = "../data/gfx/credits.png")] public static var creditsImg:Class;
+		[Embed(source = "../data/gfx/credits-sel.png")] public static var creditsSelImg:Class;
+		[Embed(source = "../data/gfx/newgame.png")] public static var newgameImg:Class;
+		[Embed(source = "../data/gfx/newgame-sel.png")] public static var newgameSelImg:Class;
+		[Embed(source = "../data/gfx/Space-Snakes-Title.png")] public static var spacesnakesTitleImg:Class;
     }
 }
