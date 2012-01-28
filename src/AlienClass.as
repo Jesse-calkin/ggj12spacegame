@@ -25,7 +25,7 @@ package
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
 		private const _AlienBulletDamageToPlanet:uint = 20;
-		private const _AlienSpeedMultiplier:uint = 50;
+		private const _AlienSpeedMultiplier:uint = 35;
 		
 		//Variables
 		private var _targetPlayer:uint;
