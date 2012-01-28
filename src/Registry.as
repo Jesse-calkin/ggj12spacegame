@@ -10,8 +10,6 @@ package
 
 				public static var player1Planet:FlxSprite;
 				public static var player2Planet:FlxSprite;
-                public static var player1health:Number;
-                public static var player2health:Number;
 				
                 public function Registry()
                 {
