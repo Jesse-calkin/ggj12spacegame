@@ -1,8 +1,7 @@
 package
 {
-	import org.flixel.FlxPreloader
-	[Frame(factoryClass="Preloader")] //Tells Flixel to use our preloader
- 
+	import org.flixel.system.FlxPreloader;
+	
 	public class Preloader extends FlxPreloader
 	{
 		public function Preloader():void
