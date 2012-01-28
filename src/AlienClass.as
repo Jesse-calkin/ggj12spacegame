@@ -8,15 +8,13 @@ package
 	 */
 	public class AlienClass extends FlxSprite
 	{
-		private const _TEMPSPEED:uint = 1;
-		
 		//Constants
 		private const _Planet1XPos:uint = Registry.player1Planet.x + Registry.player1Planet.width/2;
 		private const _Planet1YPos:uint = Registry.player1Planet.y + Registry.player1Planet.height/2;
 		private const _Planet2XPos:uint = Registry.player2Planet.x + Registry.player2Planet.width/2;
 		private const _Planet2YPos:uint = Registry.player2Planet.y + Registry.player2Planet.height/2;
 		private const _StartingHealth:uint = 1;
-		private const _OnDeathExtraSpawnPercent:uint = 20;
+		private const _OnDeathExtraSpawnPercent:uint = 10;
 		private const _HoldingPositionX:int = 100;
 		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
@@ -26,6 +24,7 @@ package
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
 		private const _AlienBulletDamageToPlanet:uint = 20;
+		private const _AlienSpeedMultiplier:uint = 50;
 		
 		//Variables
 		private var _targetPlayer:uint;
@@ -40,6 +39,13 @@ package
 		{
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
+			_alienGun = new FlxWeapon("alienGun", this);
+			_alienGun.makeImageBullet(1, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
+			_alienGun.setBulletSpeed(120);
+			_alienGun.setBulletAcceleration(10, 10, 130, 130);
+			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
+			FlxG.state.add(_alienGun.group);
+			
 			if (targetPlayer != 0)
 			{
 				activate(targetPlayer);
@@ -52,13 +58,6 @@ package
 			loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
 			addAnimation("Move", [0,1,2,3], 10);
 			play("Move");
-			
-			_alienGun = new FlxWeapon("alienGun", this);
-			_alienGun.makeImageBullet(1, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
-			_alienGun.setBulletSpeed(120);
-			_alienGun.setBulletAcceleration(10, 10, 130, 130);
-			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
-			FlxG.state.add(_alienGun.group);
 		}
 		
 		override public function update():void 
@@ -67,11 +66,13 @@ package
 			{
 				if (!_inRangeOfPlayer)
 				{
-					moveIntoRange();
+					super.update();
 					
 					if (getDistanceToPlayer() < _PlanetEngagementRange)
 					{
 						_inRangeOfPlayer = true;
+						velocity.x = 0;
+						velocity.y = 0;
 					}
 				}
 				else
@@ -82,30 +83,7 @@ package
 					inRangeCombatAI();  //<------------------------------------------------------------------<
 				}
 				
-				//draw();
-			}
-			draw();
-		}
-		
-		private function moveIntoRange():void
-		{
-			//TODO: re-write move AI Code  //<-------------------------------------------------------------<
-			if (x < getPlanetXPosition())
-			{
-				x += _TEMPSPEED;
-			}
-			else if (x > getPlanetXPosition())
-			{
-				x -= _TEMPSPEED;
-			}
-			
-			if (y < getPlanetYPosition())
-			{
-				y += _TEMPSPEED;
-			}
-			else if (y > getPlanetYPosition())
-			{
-				y -= _TEMPSPEED;
+				draw();
 			}
 		}
 		
@@ -139,12 +117,13 @@ package
 			if (Registry.player1Planet.alive && Registry.player2Planet.alive)
 			{
 				_alienGun.fireAtTarget(new FlxSprite(getPlanetXPosition(), getPlanetYPosition()));
+				_alienGun.currentBullet.revive();
 			}
 		}
 		
 		private function checkBulletCollision():void
 		{
-			if (_alienGun.currentBullet != null)
+			if (_alienGun.currentBullet != null && _alienGun.currentBullet.alive)
 			{
 				var tempXDifference:uint = 0;
 				var tempYDifference:uint = 0;
@@ -187,8 +166,6 @@ package
 						break;
 					}
 					_alienGun.currentBullet.kill();
-					_alienGun.currentBullet.x = 99999;
-					_alienGun.currentBullet.y = 99999;
 				}
 			}
 		}
@@ -206,11 +183,15 @@ package
 				}
 				
 				//kill alien
+				if (_alienGun.currentBullet != null)
+				{
+					_alienGun.currentBullet.kill();
+				}
 				activate(getNontargetPlayer());
 			}
 		}
 		
-		private function setSpawnPoint():void  //<--------------------------------------------TODO: investigate & set clockwiseRotation to false if in upper-right or lower-left corner
+		private function setSpawnPoint():void
 		{
 			switch (_targetPlayer)
 			{
@@ -265,16 +246,64 @@ package
 			}
 		}
 		
+		private function assignVelocities():void
+		{
+			velocity.x = 0;
+			velocity.y = 0;
+			
+			var tempXDifference:uint = 0;
+			var tempYDifference:uint = 0;
+			
+			if (x < getPlanetXPosition())
+			{
+				tempXDifference = getPlanetXPosition() - x;
+			}
+			else if (x > getPlanetXPosition())
+			{
+				tempXDifference = x - getPlanetXPosition();
+			}
+			
+			if (y < getPlanetYPosition())
+			{
+				tempYDifference = getPlanetYPosition() - y;
+			}
+			else if (y > getPlanetYPosition())
+			{
+				tempYDifference = y - getPlanetYPosition();
+			}
+			
+			var tempAngle:Number = Math.atan2(tempYDifference, tempXDifference);
+			
+			velocity.y = Math.sin(tempAngle) * _AlienSpeedMultiplier;
+			velocity.x = Math.cos(tempAngle) * _AlienSpeedMultiplier;
+			
+			if (x > getPlanetXPosition())
+			{
+				velocity.x *= -1;
+			}
+			if (y > getPlanetYPosition())
+			{
+				velocity.y *= -1;
+			}
+			
+			angle = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(getPlanetXPosition(), getPlanetYPosition()));
+		}
+		
 		public function activate(targetPlayer:uint):void
 		{
 			isActive = true;
 			health = _StartingHealth;
 			_targetPlayer = targetPlayer;
 			setSpawnPoint();
+			assignVelocities();
 			_inRangeOfPlayer = false;
 			_fireDelayTimer = 0.0;
 			setNextFireTime();
 			_clockwiseRotation = true;
+			if (_alienGun.currentBullet != null)
+			{
+				_alienGun.currentBullet.revive();
+			}
 		}
 		
 		private function getDistanceToPlayer():Number
