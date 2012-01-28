@@ -1,6 +1,5 @@
 package
 {
-
 	public class SoundFiles
 	{
 		[Embed(source = "../data/sounds/asteroid/asteroid crash.mp3")]public static var asteroidCrashSnd:Class

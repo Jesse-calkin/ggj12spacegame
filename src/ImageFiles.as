@@ -1,6 +1,5 @@
 package
 {
-	
 	public class ImageFiles
 	{
 		[Embed(source = "../data/gfx/SpaceBackground.png")] public static var level1backgroundImg:Class;
