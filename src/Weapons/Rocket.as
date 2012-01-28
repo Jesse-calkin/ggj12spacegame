@@ -14,15 +14,15 @@ package Weapons
 		public function Rocket(weapon:FlxWeapon, id:uint)
 		{
 			super(weapon, id);
-			initParticleSystem();
+			//initParticleSystem();
 		}
 		
-		private function initParticleSystem()
+		/*private function initParticleSystem()
 		{
 			_propulsionEmitter = new FlxEmitter(this.x, this.y, 5);
 			_propulsionEmitter.add(new FlxParticle().makeGraphic(2, 2, 0xFFFF0000));
 			_propulsionEmitter.add(new FlxParticle().makeGraphic(2, 2, 0xFFFFFF00));
-		}
+		}*/
 		
 		/*private function initPropulsionParticles() {
 			_propulsionParticles[0] = new FlxParticle();
@@ -31,22 +31,22 @@ package Weapons
 			_propulsionParticles[1].makeGraphic(2, 2, 0xFFFFFF00);
 		}*/
 		
-		override public function update():void
+		/*override public function update():void
 		{
 			_propulsionEmitter.emitParticle();
 			
 			super.update()
-		}
+		}*/
 		
-		private function initExplosionParticles() {
+		/*private function initExplosionParticles() {
 			//TODO: //
 			
-		}
+		}*/
 		
-		override public function kill():void 
+		/*override public function kill():void 
 		{
 			
 			super.kill();
-		}
+		}*/
 	}		
 }

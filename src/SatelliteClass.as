@@ -22,7 +22,8 @@ package
 		public function SatelliteClass(Player:uint, X:Number = 0, Y:Number = 0, SimpleGraphic:Class = null)
 		{
 			super(X, Y, SimpleGraphic);
-			
+
+			//loadRotatedGraphic(SimpleGraphic, 360,
 			if (Player == 1)
 			{
 				xcenter = Registry.player1Planet.x + (Registry.player1Planet.width / 2);
