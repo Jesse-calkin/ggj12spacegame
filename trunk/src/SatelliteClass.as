@@ -41,7 +41,7 @@ package
 		public function MoveClockwise():void
 		{
 			degree -= speed;
-			angle = degree + 90;
+			angle = degree + 40;
 			radian = (degree / 180) * Math.PI;
 			x = xcenter + Math.cos(radian) * radius;
 			y = ycenter - Math.sin(radian) * radius;
@@ -50,7 +50,7 @@ package
 		public function MoveCounterclockwise():void
 		{
 			degree += speed;
-			angle = degree + 90;
+			angle = degree + 40;
 			radian = (degree / 180) * Math.PI;
 			x = xcenter + Math.cos(radian) * radius;
 			y = ycenter - Math.sin(radian) * radius;
@@ -61,7 +61,7 @@ package
 			//trace("X: " + x);
 			//trace("Y: " + y);
 			//trace("D: " + degree);
-			FlxG.play(SoundFiles.rocketFireSnd);
+			FlxG.play(SoundFiles.laserFireSnd);
 			_rocketLauncher.fireFromAngle(degree);
 		}
 		
