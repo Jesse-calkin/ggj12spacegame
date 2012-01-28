@@ -7,142 +7,288 @@ package
 	 */
 	public class AlienClass extends FlxSprite
 	{
+		private const _TEMPSPEED:uint = 1;
+		
 		//Constants
+		private const _Planet1XPos:uint = Registry.player1Planet.x + Registry.player1Planet.width/2;
+		private const _Planet1YPos:uint = Registry.player1Planet.y + Registry.player1Planet.height/2;
+		private const _Planet2XPos:uint = Registry.player2Planet.x + Registry.player2Planet.width/2;
+		private const _Planet2YPos:uint = Registry.player2Planet.y + Registry.player2Planet.height/2;
 		private const _StartingHealth:uint = 1;
-		private const _MaxHealth:uint = 1;
-		private const _MinHealth:uint = 0;
 		private const _OnDeathSpawnRate:uint = 2;
+		private const _HoldingPositionX:int = -200;
+		private const _HoldingPositionY:int = -200;
+		private const _MinFireDelay:uint = 2;
+		private const _MaxFireDelay:uint = 4;
 		private const _SpawnDistanceFromScreen:uint = 50;
-		private const _RandomSpawnPointSelectionLength:uint = (200 * 3) + (_SpawnDistanceFromScreen * 4);
-		private const _SpawnZone1 = (FlxG.width / 2) + _SpawnDistanceFromScreen;
-		private const _SpawnZone2 = FlxG.height + _SpawnDistanceFromScreen * 2 + _SpawnZone1;
-		private const _SpawnZone3 = _SpawnZone1 * 2 + _SpawnZone2;
+		private const _PlanetEngagementRange:uint = 100;
 		
 		//Variables
-		private var _health:uint = null;
-		private var _targetPlayer:uint = null;
-		private var _xPos:int = 0;
-		private var _yPos:int = 0;
-		private var _inRangeOfPlayer:Boolean = null;
-		private var _randomSpawnPoint:uint = null;
+		private var _targetPlayer:uint;
+		private var _inRangeOfPlayer:Boolean;
+		private var _fireDelayTimer:Number;
+		private var _nextFireTime:Number;
+		private var _clockwiseRotation:Boolean;
+		public var isActive:Boolean;
 		
-		public function AlienClass(targetPlayer:uint = null, SimpleGraphic:Class = null) 
+		public function AlienClass(targetPlayer:uint = 0)
 		{
-			health = _StartingHealth;
+			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
-			if (targetPlayer != null)
+			if (targetPlayer != 0)
 			{
-				_targetPlayer = targetPlayer;
-			}
-			else 
-			{
-				_targetPlayer = getClosestPlayer();
+				activate(targetPlayer);
 			}
 			
-			_inRangeOfPlayer = false;
-			
-			super(_xPos, _yPos, SimpleGraphic);
+			loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
+			addAnimation("Move", [0,1,2,3], 10);
+			play("Move");
 		}
 		
 		override public function update():void 
 		{
-			//if in range of player, attack and/or move
-			
-			//else, move towards player
-		}
-		
-		private function move()
-		{
-			if (!_inRangeOfPlayer)
+			if (isActive)
 			{
-				//move towards planet
+				if (!_inRangeOfPlayer)
+				{
+					moveIntoRange();
+					
+					if (getDistanceToPlayer() < _PlanetEngagementRange)
+					{
+						_inRangeOfPlayer = true;
+					}
+				}
+				else
+				{
+					//TODO: CHANGE! Put straifing and fireing AI here
+					deactivate();
+					activate(_targetPlayer);
+					//takeDamage(1); //testing only
+					
+					//inRangeCombatAI();  //<------------------------------------------------------------------<
+				}
 				
-				//check if in range of player
-			}
-			else
-			{
-				//move around planet
+				draw();
 			}
 		}
 		
-		private function attack()
+		private function moveIntoRange():void
+		{
+			//TODO: re-write move AI Code  //<-------------------------------------------------------------<
+			if (x < getPlanetXPosition())
+			{
+				x += _TEMPSPEED;
+			}
+			else if (x > getPlanetXPosition())
+			{
+				x -= _TEMPSPEED;
+			}
+			
+			if (y < getPlanetYPosition())
+			{
+				y += _TEMPSPEED;
+			}
+			else if (y > getPlanetYPosition())
+			{
+				y -= _TEMPSPEED;
+			}
+			
+			if (x == getPlanetXPosition() && y == getPlanetYPosition()) //<-----------------------------------------------------------
+			{
+				setSpawnPoint();
+			}
+		}
+		
+		private function inRangeCombatAI():void
+		{
+			combatMove();
+			checkAttack();
+		}
+		
+		private function combatMove():void
 		{
 			
 		}
 		
-		public function takeDamage(damage:uint)
+		private function checkAttack():void
+		{
+			_fireDelayTimer += FlxG.elapsed;
+			
+			if (_fireDelayTimer >= _nextFireTime)
+			{
+				fireShot();
+				_fireDelayTimer = 0.0;
+				setNextFireTime();
+			}
+		}
+		
+		private function fireShot():void
+		{
+			
+		}
+		
+		public function takeDamage(damage:Number):void
 		{
 			health -= damage;
 			
-			if (health <= _MinHealth)
+			if (health <= 0)
 			{
-				//kill alien
-				
 				//spawn aliens on enemy
+				for (var i:uint = 0; i < _OnDeathSpawnRate; i++)
+				{
+					switch (_targetPlayer)
+					{
+					case 1:
+						//add alien targeting player 2 //<----------------------------------------------------------
+						break;
+					case 2:
+						//add alien targeting player 1 //<----------------------------------------------------------
+						break;
+					}
+				}
+				
+				//kill alien
+				deactivate();
 			}
 		}
 		
-		private function getClosestPlayer()
+		private function setSpawnPoint():void  //<--------------------------------------------TODO: investigate & set clockwiseRotation to false if in upper-right or lower-left corner
 		{
-			//find distance between alien and both players
-			
-			//set target to closest player
-		}
-		
-		private function setSpawnPoint()
-		{
-			_randomSpawnPoint = FlxG.random() * _RandomSpawnPointSelectionLength;
-			
-			switch(_targetPlayer)
+			switch (_targetPlayer)
 			{
-			case 1:
-				//spawn on left side of screen
-				if (_randomSpawnPoint <= _SpawnZone1)
+			case 1: //left side
+				switch(((int)(FlxG.random() * 2.999 + 0.00001)) + 1)
 				{
-					_xPos = _randomSpawnPoint - _SpawnDistanceFromScreen;
-					_yPos = -_SpawnDistanceFromScreen;
-				}
-				else if (_randomSpawnPoint <= _SpawnZone2)
-				{
-					_xPos = -_SpawnDistanceFromScreen;
-					_yPos = (_SpawnDistanceFromScreen - _SpawnZone1) - _SpawnDistanceFromScreen;
-				}
-				else if (_randomSpawnPoint <= _SpawnZone3)
-				{
-					_xPos = _randomSpawnPoint - _SpawnDistanceFromScreen - _SpawnZone2;
-					_yPos = FlxG.height + _SpawnDistanceFromScreen;
-				}
-				else
-				{
-					FlxG.log("Alien Spawn Position Assignment Error.");
+				case 1:
+					x = FlxG.random() * 200 + 100;
+					y = -_SpawnDistanceFromScreen;
+					break;
+				case 2:
+					x = -_SpawnDistanceFromScreen;
+					y = FlxG.random() * 200;
+					break;
+				case 3:
+					x = FlxG.random() * 200 + 100;
+					y = FlxG.height + _SpawnDistanceFromScreen;
+					break;
+				default:
+					FlxG.log("Random Side Selector Error.");
+					break;
 				}
 				break;
-			case 2:
-				//spawn on right side of screen
-				if (_randomSpawnPoint <= _SpawnZone1)
+			case 2: //right side
+				switch(((int)(FlxG.random() * 2.999 + 0.00001)) + 1)
 				{
-					_xPos = _SpawnDistanceFromScreen + (FlxG.width / 2);
-					_yPos = -_SpawnDistanceFromScreen;
-				}
-				else if (_randomSpawnPoint <= _SpawnZone2)
-				{
-					_xPos = FlxG.width + _SpawnDistanceFromScreen;
-					_yPos = (_SpawnDistanceFromScreen - _SpawnZone1) - _SpawnDistanceFromScreen;
-				}
-				else if (_randomSpawnPoint <= _SpawnZone3)
-				{
-					_xPos = _randomSpawnPoint + (FlxG.width / 2) - _SpawnZone2;
-					_yPos = FlxG.height + _SpawnDistanceFromScreen;
-				}
-				else
-				{
-					FlxG.log("Alien Spawn Position Assignment Error.");
+				case 1:
+					x = FlxG.random() * 200 + 300;
+					y = -_SpawnDistanceFromScreen;
+					break;
+				case 2:
+					x = FlxG.width + _SpawnDistanceFromScreen;
+					y = FlxG.random() * 200;
+					break;
+				case 3:
+					x = FlxG.random() * 200 + 300;
+					y = FlxG.height + _SpawnDistanceFromScreen;
+					break;
+				default:
+					FlxG.log("Random Side Selector Error.");
+					break;
 				}
 				break;
 			default:
-				FlxG.log("Alien Target Assignment Error.");
+				FlxG.log("Target Player Assignment Error");
 				break;
 			}
+		}
+		
+		public function activate(targetPlayer:uint):void
+		{
+			isActive = true;
+			health = _StartingHealth;
+			_targetPlayer = targetPlayer;
+			setSpawnPoint();
+			_inRangeOfPlayer = false;
+			_fireDelayTimer = 0.0;
+			setNextFireTime();
+			_clockwiseRotation = true;
+		}
+		
+		private function deactivate():void
+		{
+			isActive = false;
+			x = _HoldingPositionX;
+			y = _HoldingPositionY;
+		}
+		
+		private function getDistanceToPlayer():Number
+		{
+			var tempXDifference:uint = 0;
+			var tempYDifference:uint = 0;
+			
+			if (x < getPlanetXPosition())
+			{
+				tempXDifference = getPlanetXPosition() - x;
+			}
+			else if (x > getPlanetXPosition())
+			{
+				tempXDifference = x - getPlanetXPosition();
+			}
+			
+			if (y < getPlanetYPosition())
+			{
+				tempYDifference = getPlanetYPosition() - y;
+			}
+			else if (y > getPlanetYPosition())
+			{
+				tempYDifference = y - getPlanetYPosition();
+			}
+			
+			return Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference));
+		}
+		
+		private function getPlanetXPosition():uint
+		{
+			switch(_targetPlayer)
+			{
+			case 1:
+				return _Planet1XPos;
+				break;
+			case 2:
+				return _Planet2XPos;
+				break;
+			default:
+				FlxG.log("Target Player Assignment Error");
+				break;
+			}
+			return 0;
+		}
+		
+		private function getPlanetYPosition():uint
+		{
+			switch(_targetPlayer)
+			{
+			case 1:
+				return _Planet1YPos;
+				break;
+			case 2:
+				return _Planet2YPos;
+				break;
+			default:
+				FlxG.log("Target Player Assignment Error");
+				break;
+			}
+			return 0;
+		}
+		
+		private function setNextFireTime():void
+		{
+			_nextFireTime = (FlxG.random() * Math.abs(_MaxFireDelay - _MinFireDelay) + _MinFireDelay);
+		}
+		
+		public function getTargetPlayer():uint
+		{
+			return _targetPlayer;
 		}
 		
 	}
