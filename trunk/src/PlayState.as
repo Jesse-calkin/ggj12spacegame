@@ -16,11 +16,11 @@ package
 			add(background);
 			
 			Registry.player1Planet = new FlxSprite(200 - 55 / 2, (FlxG.height / 2) - 55 / 2, bluePlanetImg);
-			Registry.player1health = 100;
+			Registry.player1Planet.health = 100;
 			add(Registry.player1Planet);
 			
 			Registry.player2Planet = new FlxSprite(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, orangePlanetImg);
-			Registry.player2health = 100;
+			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 		}
 		
