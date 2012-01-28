@@ -13,9 +13,10 @@ package Weapons
 	public class RocketLauncher extends FlxWeapon
 	{
 		private const _rocketCount:int = 50;
-		private const _maxRocketSpeed:FlxPoint = new FlxPoint(130, 130);
-		private const _startRocketSpeed:int = 120;
+		private const _maxRocketSpeed:FlxPoint = new FlxPoint(190, 190);
+		private const _startRocketSpeed:int = 140;
 		private const _rocketAcceleration:FlxPoint = new FlxPoint(10, 10);
+		private const _rateOfFire:int = 400;
 		
 		public function RocketLauncher(satelite:SatelliteClass) 
 		{
@@ -24,7 +25,13 @@ package Weapons
 			setBulletSpeed(_startRocketSpeed);
 			setBulletAcceleration(_rocketAcceleration.x, _rocketAcceleration.y, _maxRocketSpeed.x, _maxRocketSpeed.y);
 			setBulletBounds(new FlxRect(0, 0, 800, 400)); // be nice to pass from play state or wherever
+			setFireRate(_rateOfFire);
 		}
+		
+		/*public function fire()
+		{
+			_rocketLauncher.fireFromAngle(0); 			
+		}*/
 	}
 
 }
