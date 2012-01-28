@@ -1,0 +1,9 @@
+Pyro Instructions
+
+get rid of mask add facial features and hair
+Give him normal civillian clothing, up to your discretion
+get rid of fans in walking animations and have him holding a molotov instead
+create molotov for throwing animations
+Create molotov igniting(small explosion) and burning area animations
+
+included are some "fire" special effects that I came across that might be useful.
