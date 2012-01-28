@@ -1,6 +1,7 @@
 package  
 {
 	import org.flixel.FlxSprite;
+	import org.flixel.FlxG;
 	import Weapons.RocketLauncher;
 	
 	/**
@@ -59,6 +60,7 @@ package
 			//trace("X: " + x);
 			//trace("Y: " + y);
 			//trace("D: " + degree);
+			FlxG.play(SoundFiles.rocketFireSnd);
 			_rocketLauncher.fireFromAngle(degree);
 		}
 		
