@@ -2,13 +2,11 @@ package
 {
 	import adobe.utils.CustomActions;
 	import org.flixel.*;
-	import Weapons.RocketLauncher;
+	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	
 	public class PlayState extends FlxState
 	{	
-		//TODO: Move to player
-		private var _rocketLauncher:RocketLauncher;
-		public static var alienGroup:FlxGroup;
+		public static var alienGroup:FlxGroup;		
 		
 		override public function create():void
 		{
@@ -31,8 +29,6 @@ package
 			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player2Satellite);
 			
-			//Should move this to player + allow switching weapons via powerups
-			//_rocketLauncher = new RocketLauncher(Registry.player1Satellite);
 			add(Registry.player1Satellite._rocketLauncher.group);
 			add(Registry.player2Satellite._rocketLauncher.group);
 			
@@ -44,6 +40,9 @@ package
 		
 		override public function update():void
 		{
+			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
+			FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, alienGroup, AlienHit);		
+			
 			getInput();			
 			super.update();
 		}	
@@ -90,5 +89,12 @@ package
 			return !(Registry.player1Planet.alive && Registry.player2Planet.alive);
 		}
 		
+		public function AlienHit(rocket:Bullet, alien:AlienClass):void
+		{
+			//TODO: Add dmg to bullets instead of kills.
+			rocket.kill();
+			//TODO: Switch hard coded dmg with bullet dmg.
+			alien.takeDamage(1); 		
+		}
 	}
 }
