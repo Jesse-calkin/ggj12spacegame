@@ -2,6 +2,7 @@ package
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
+	import Weapons.Rocket;
 	/**
 	 * ...
 	 * @author Lachlan McInnes
@@ -40,7 +41,7 @@ package
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
 			_alienGun = new FlxWeapon("alienGun", this);
-			_alienGun.makeImageBullet(1, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
+			_alienGun.makeImageBullet(1, Rocket, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
 			_alienGun.setBulletSpeed(120);
 			_alienGun.setBulletAcceleration(10, 10, 130, 130);
 			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
@@ -267,6 +268,7 @@ package
 			{
 				tempYDifference = getPlanetYPosition() - y;
 			}
+			
 			else if (y > getPlanetYPosition())
 			{
 				tempYDifference = y - getPlanetYPosition();

@@ -21,17 +21,12 @@ package Weapons
 		public function RocketLauncher(satelite:SatelliteClass) 
 		{
 			super("RocketLauncher", satelite, "x", "y");
-			makeImageBullet(_rocketCount, ImageFiles.rocketImg, 5, 0, true);
+			makeImageBullet(_rocketCount, Rocket, ImageFiles.rocketImg, 5, 0, true, 360);
 			setBulletSpeed(_startRocketSpeed);
 			setBulletAcceleration(_rocketAcceleration.x, _rocketAcceleration.y, _maxRocketSpeed.x, _maxRocketSpeed.y);
 			setBulletBounds(new FlxRect(0, 0, 800, 400)); // be nice to pass from play state or wherever
 			setFireRate(_rateOfFire);
 		}
-		
-		/*public function fire()
-		{
-			_rocketLauncher.fireFromAngle(0); 			
-		}*/
 	}
 
 }
