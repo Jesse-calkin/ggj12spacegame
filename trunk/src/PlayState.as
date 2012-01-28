@@ -8,7 +8,7 @@ package
 	{	
 		//TODO: Move to player
 		private var _rocketLauncher:RocketLauncher;
-		public static var _alienGroup:FlxGroup;
+		public static var alienGroup:FlxGroup;
 		
 		override public function create():void
 		{
@@ -35,10 +35,10 @@ package
 			_rocketLauncher = new RocketLauncher(Registry.player1Satellite);
 			add(_rocketLauncher.group);
 			
-			_alienGroup = new FlxGroup(500);
-			_alienGroup.add(new AlienClass(1));
-			_alienGroup.add(new AlienClass(2));
-			add(_alienGroup);
+			alienGroup = new FlxGroup(500);
+			alienGroup.add(new AlienClass(1));
+			alienGroup.add(new AlienClass(2));
+			add(alienGroup);
 		}
 		
 		override public function update():void
@@ -77,6 +77,11 @@ package
 				_rocketLauncher.fireFromAngle(0); // pelt the orange planet...for now...
 				//trace("Fire!");
 			}
+		}
+		
+		public function isGameOver():Boolean
+		{
+			return !(Registry.player1Planet.alive && Registry.player2Planet.alive);
 		}
 		
 	}
