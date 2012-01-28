@@ -44,7 +44,8 @@ package
 		{
 			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
 			FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, alienGroup, AlienHit);		
-			
+			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, Registry.player2Planet, PlanetHit);
+			FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, Registry.player1Planet, PlanetHit);
 			getInput();			
 			super.update();
 		}	
@@ -97,6 +98,12 @@ package
 			rocket.kill();
 			//TODO: Switch hard coded dmg with bullet dmg.
 			alien.takeDamage(1); 
+		}
+		
+		public function PlanetHit(rocket:Bullet, planet:FlxSprite):void
+		{
+			rocket.kill();
+			planet.hurt(20);
 		}
 	}
 }
