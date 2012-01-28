@@ -15,12 +15,14 @@ package
 		private const _Planet2XPos:uint = Registry.player2Planet.x + Registry.player2Planet.width/2;
 		private const _Planet2YPos:uint = Registry.player2Planet.y + Registry.player2Planet.height/2;
 		private const _StartingHealth:uint = 1;
-		private const _OnDeathSpawnRate:uint = 2;
-		private const _HoldingPositionX:int = -200;
-		private const _HoldingPositionY:int = -200;
+		private const _OnDeathExtraSpawnPercent:uint = 20;
+		private const _HoldingPositionX:int = 100;
+		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
 		private const _MaxFireDelay:uint = 4;
 		private const _SpawnDistanceFromScreen:uint = 50;
+		private const _SpawnDistanceFromScreenX:uint = 15;
+		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
 		
 		//Variables
@@ -38,6 +40,10 @@ package
 			if (targetPlayer != 0)
 			{
 				activate(targetPlayer);
+			}
+			else
+			{
+				isActive = false;
 			}
 			
 			loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
@@ -61,15 +67,14 @@ package
 				else
 				{
 					//TODO: CHANGE! Put straifing and fireing AI here
-					deactivate();
-					activate(_targetPlayer);
-					//takeDamage(1); //testing only
+					takeDamage(1); //testing only
 					
 					//inRangeCombatAI();  //<------------------------------------------------------------------<
 				}
 				
-				draw();
+				//draw();
 			}
+			draw();
 		}
 		
 		private function moveIntoRange():void
@@ -91,11 +96,6 @@ package
 			else if (y > getPlanetYPosition())
 			{
 				y -= _TEMPSPEED;
-			}
-			
-			if (x == getPlanetXPosition() && y == getPlanetYPosition()) //<-----------------------------------------------------------
-			{
-				setSpawnPoint();
 			}
 		}
 		
@@ -134,21 +134,13 @@ package
 			if (health <= 0)
 			{
 				//spawn aliens on enemy
-				for (var i:uint = 0; i < _OnDeathSpawnRate; i++)
+				if (FlxG.random() > ((100 - _OnDeathExtraSpawnPercent) / 100))
 				{
-					switch (_targetPlayer)
-					{
-					case 1:
-						//add alien targeting player 2 //<----------------------------------------------------------
-						break;
-					case 2:
-						//add alien targeting player 1 //<----------------------------------------------------------
-						break;
-					}
+					PlayState._alienGroup.add(new AlienClass(getNontargetPlayer()));
 				}
 				
 				//kill alien
-				deactivate();
+				activate(getNontargetPlayer());
 			}
 		}
 		
@@ -160,16 +152,16 @@ package
 				switch(((int)(FlxG.random() * 2.999 + 0.00001)) + 1)
 				{
 				case 1:
-					x = FlxG.random() * 200 + 100;
-					y = -_SpawnDistanceFromScreen;
+					x = FlxG.random() * 200 * 2;
+					y = -_SpawnDistanceFromScreenY;
 					break;
 				case 2:
-					x = -_SpawnDistanceFromScreen;
-					y = FlxG.random() * 200;
+					x = -_SpawnDistanceFromScreenX;
+					y = FlxG.random() * 200 * 2;
 					break;
 				case 3:
-					x = FlxG.random() * 200 + 100;
-					y = FlxG.height + _SpawnDistanceFromScreen;
+					x = FlxG.random() * 200 * 2;
+					y = FlxG.height + _SpawnDistanceFromScreenY;
 					break;
 				default:
 					FlxG.log("Random Side Selector Error.");
@@ -180,16 +172,16 @@ package
 				switch(((int)(FlxG.random() * 2.999 + 0.00001)) + 1)
 				{
 				case 1:
-					x = FlxG.random() * 200 + 300;
-					y = -_SpawnDistanceFromScreen;
+					x = FlxG.random() * 200 * 2 + 400;
+					y = -_SpawnDistanceFromScreenY;
 					break;
 				case 2:
-					x = FlxG.width + _SpawnDistanceFromScreen;
-					y = FlxG.random() * 200;
+					x = FlxG.width + _SpawnDistanceFromScreenX;
+					y = FlxG.random() * 200 * 2;
 					break;
 				case 3:
-					x = FlxG.random() * 200 + 300;
-					y = FlxG.height + _SpawnDistanceFromScreen;
+					x = FlxG.random() * 200 * 2 + 400;
+					y = FlxG.height + _SpawnDistanceFromScreenY;
 					break;
 				default:
 					FlxG.log("Random Side Selector Error.");
@@ -199,6 +191,11 @@ package
 			default:
 				FlxG.log("Target Player Assignment Error");
 				break;
+			}
+			
+			if ((x > getPlanetXPosition() && y < getPlanetYPosition()) || (x < getPlanetXPosition() && y > getPlanetYPosition()))
+			{
+				_clockwiseRotation = false;
 			}
 		}
 		
@@ -212,13 +209,6 @@ package
 			_fireDelayTimer = 0.0;
 			setNextFireTime();
 			_clockwiseRotation = true;
-		}
-		
-		private function deactivate():void
-		{
-			isActive = false;
-			x = _HoldingPositionX;
-			y = _HoldingPositionY;
 		}
 		
 		private function getDistanceToPlayer():Number
@@ -289,6 +279,21 @@ package
 		public function getTargetPlayer():uint
 		{
 			return _targetPlayer;
+		}
+		
+		
+		private function getNontargetPlayer():uint
+		{
+			switch(_targetPlayer)
+			{
+			case 1:
+				return 2;
+				break;
+			case 2:
+				return 1;
+				break;
+			}
+			return 0;
 		}
 		
 	}
