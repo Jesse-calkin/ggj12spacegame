@@ -153,6 +153,7 @@ package
 					{
 					case 1:
 						Registry.player1Planet.health -= _AlienBulletDamageToPlanet;
+						Registry.player1Planet.flicker(0.2);
 						if (Registry.player1Planet.health <= 0 && Registry.player2Planet.alive)
 						{
 							Registry.player1Planet.kill();
@@ -160,6 +161,7 @@ package
 						break;
 					case 2:
 						Registry.player2Planet.health -= _AlienBulletDamageToPlanet;
+						Registry.player2Planet.flicker(0.2);
 						if (Registry.player2Planet.health <= 0 && Registry.player1Planet.alive)
 						{
 							Registry.player2Planet.kill();
@@ -180,7 +182,16 @@ package
 				//spawn aliens on enemy
 				if (FlxG.random() > ((100 - _OnDeathExtraSpawnPercent) / 100))
 				{
+					var alienSound:FlxSound = new FlxSound();
+					alienSound.loadEmbedded(SoundFiles.alienSnd);
+					alienSound.play();
 					PlayState.alienGroup.add(new AlienClass(getNontargetPlayer()));
+				}
+				else
+				{
+					var alienDeathSound:FlxSound = new FlxSound();
+					alienDeathSound.loadEmbedded(SoundFiles.alienDeathSnd);
+					alienDeathSound.play();
 				}
 				
 				//kill alien
