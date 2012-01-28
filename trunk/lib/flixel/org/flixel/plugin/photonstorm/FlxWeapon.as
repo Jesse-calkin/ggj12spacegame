@@ -193,7 +193,7 @@ package org.flixel.plugin.photonstorm
 		 * @param	antiAliasing	Whether to use high quality rotations when creating the graphic. Default is false.
 		 * @param	autoBuffer		Whether to automatically increase the image size to accomodate rotated corners. Default is false. Will create frames that are 150% larger on each axis than the original frame or graphic.
 		 */
-		public function makeImageBullet(quantity:uint, bulletType:Class = Bullet, image:Class, offsetX:int = 0, offsetY:int = 0, autoRotate:Boolean = false, rotations:uint = 16, frame:int = -1, antiAliasing:Boolean = false, autoBuffer:Boolean = false):void
+		public function makeImageBullet(quantity:uint, bulletType:Class, image:Class, offsetX:int = 0, offsetY:int = 0, autoRotate:Boolean = false, rotations:uint = 16, frame:int = -1, antiAliasing:Boolean = false, autoBuffer:Boolean = false):void
 		{
 			group = new FlxGroup(quantity);
 			
@@ -201,7 +201,7 @@ package org.flixel.plugin.photonstorm
 			
 			for (var b:uint = 0; b < quantity; b++)
 			{
-				var tempBullet:* = new bulletType(this, b);
+				var tempBullet:* = (bulletType == null) ? new Bullet(this, b) : new bulletType(this, b);
 				
 				if (autoRotate)
 				{
