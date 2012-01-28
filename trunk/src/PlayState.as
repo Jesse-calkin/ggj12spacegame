@@ -32,7 +32,7 @@ package
 			add(Registry.player1Satellite._rocketLauncher.group);
 			add(Registry.player2Satellite._rocketLauncher.group);
 			
-			alienGroup = new FlxGroup(500);
+			alienGroup = new FlxGroup(100);
 			alienGroup.add(new AlienClass(1));
 			alienGroup.add(new AlienClass(2));
 			add(alienGroup);
@@ -94,7 +94,7 @@ package
 			//TODO: Add dmg to bullets instead of kills.
 			rocket.kill();
 			//TODO: Switch hard coded dmg with bullet dmg.
-			alien.takeDamage(1); 		
+			alien.takeDamage(1); 
 		}
 	}
 }
