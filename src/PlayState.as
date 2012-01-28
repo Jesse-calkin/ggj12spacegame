@@ -1,5 +1,6 @@
 package
 {
+	import adobe.utils.CustomActions;
 	import org.flixel.*;
 	import Weapons.RocketLauncher;
 	
@@ -7,9 +8,7 @@ package
 	{	
 		//TODO: Move to player
 		private var _rocketLauncher:RocketLauncher;
-		
-		private var alien1:AlienClass;
-		private var alien2:AlienClass;
+		public static var _alienGroup:FlxGroup;
 		
 		override public function create():void
 		{
@@ -33,10 +32,10 @@ package
 			_rocketLauncher = new RocketLauncher(Registry.Satellite);
 			add(_rocketLauncher.group);
 			
-			alien1 = new AlienClass(1);
-			add(alien1);
-			alien2 = new AlienClass(2);
-			add(alien2);
+			_alienGroup = new FlxGroup(500);
+			_alienGroup.add(new AlienClass(1));
+			_alienGroup.add(new AlienClass(2));
+			add(_alienGroup);
 		}
 		
 		override public function update():void
@@ -45,7 +44,7 @@ package
 			super.update();
 		}	
 		
-		public function getInput():void //set up player 1 controls (WASD)
+		public function getInput():void //TODO: set up player 1 controls (WASD)
 		{
 			if (FlxG.keys.RIGHT)
 			{
@@ -66,8 +65,9 @@ package
 			if (FlxG.keys.justPressed("UP"))
 			{
 				_rocketLauncher.fireFromAngle(0); // pelt the orange planet...for now...
-				trace("Fire!");
+				//trace("Fire!");
 			}
 		}
+		
 	}
 }
