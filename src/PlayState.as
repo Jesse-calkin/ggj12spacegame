@@ -48,18 +48,12 @@ package
 		{
 			if (FlxG.keys.RIGHT)
 			{
-				Registry.Satellite.degree -= Registry.Satellite.speed;
-				Registry.Satellite.radian = (Registry.Satellite.degree/180)*Math.PI;
-				Registry.Satellite.x = Registry.Satellite.xcenter+Math.cos(Registry.Satellite.radian)*Registry.Satellite.radius;
-				Registry.Satellite.y = Registry.Satellite.ycenter-Math.sin(Registry.Satellite.radian)*Registry.Satellite.radius;
+				Registry.Satellite.MoveClockwise();
 			}
 			
 			if (FlxG.keys.LEFT)
 			{
-				Registry.Satellite.degree += Registry.Satellite.speed;
-				Registry.Satellite.radian = (Registry.Satellite.degree/180)*Math.PI;
-				Registry.Satellite.x = Registry.Satellite.xcenter+Math.cos(Registry.Satellite.radian)*Registry.Satellite.radius;
-				Registry.Satellite.y = Registry.Satellite.ycenter-Math.sin(Registry.Satellite.radian)*Registry.Satellite.radius;
+				Registry.Satellite.MoveCounterclockwise();
 			}
 			
 			if (FlxG.keys.justPressed("UP"))
