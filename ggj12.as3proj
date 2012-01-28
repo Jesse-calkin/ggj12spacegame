@@ -4,7 +4,7 @@
   <output>
     <movie disabled="False" />
     <movie input="" />
-    <movie path="bin\Zombieninjas.swf" />
+    <movie path="bin\ggj12.swf" />
     <movie fps="30" />
     <movie width="800" />
     <movie height="600" />
@@ -27,7 +27,6 @@
     <option optimize="True" />
     <option showActionScriptWarnings="True" />
     <option showBindingWarnings="True" />
-    <option showInvalidCSS="True" />
     <option showDeprecationWarnings="True" />
     <option showUnusedTypeSelectorWarnings="True" />
     <option strict="True" />
