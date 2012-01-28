@@ -9,8 +9,8 @@ package
 		
 		public static var player1Planet:FlxSprite;
 		public static var player2Planet:FlxSprite;
-		public static var Satellite:SatelliteClass;
-		//public static var player2Satellite:FlxSprite;
+		public static var player1Satellite:SatelliteClass;
+		public static var player2Satellite:SatelliteClass;
 		
 		public function Registry()
 		{
