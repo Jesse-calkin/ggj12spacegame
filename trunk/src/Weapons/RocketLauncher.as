@@ -19,14 +19,15 @@ package Weapons
 		private const _rocketAcceleration:FlxPoint = new FlxPoint(10, 10);
 		private const _rateOfFire:int = 400;
 		
-		public function RocketLauncher(satelite:SatelliteClass) 
+		public function RocketLauncher(satellite:SatelliteClass) 
 		{
-			super("RocketLauncher", satelite, "x", "y");
+			super("RocketLauncher");
 			makeImageBullet(_rocketCount, Rocket, ImageFiles.rocketImg, 5, 0, true, 360);
 			setBulletSpeed(_startRocketSpeed);
 			setBulletAcceleration(_rocketAcceleration.x, _rocketAcceleration.y, _maxRocketSpeed.x, _maxRocketSpeed.y);
 			setBulletBounds(new FlxRect(0, 0, 800, 400)); // be nice to pass from play state or wherever
-			setFireRate(_rateOfFire);
+			setFireRate(_rateOfFire);		
+			setParent(satellite, "x", "y", satellite.width, satellite.height / 2 - 1);
 			onFireSound = new FlxSound().loadEmbedded(SoundFiles.laserFireSnd);
 		}
 	}
