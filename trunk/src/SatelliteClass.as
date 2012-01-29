@@ -89,7 +89,6 @@ package
 			//trace("X: " + x);
 			//trace("Y: " + y);
 			//trace("D: " + degree);
-			FlxG.play(SoundFiles.laserFireSnd);
 			_rocketLauncher.fireFromAngle(degree);
 		}
 		
