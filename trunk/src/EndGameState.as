@@ -49,13 +49,13 @@ package
 			add(replaytext);
 			
 			var p1scoreText:FlxText;
-			p1scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p1score.toString());
-			p1scoreText.setFormat (null, 32, 0x00CCFF, "left");
+			p1scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p1score.toString());
+			p1scoreText.setFormat (null, 120, 0x00CCFF, "left");
 			add(p1scoreText);
 			
 			var p2scoreText:FlxText;
-			p2scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p2score.toString());
-			p2scoreText.setFormat (null, 32, 0xFF6600, "right");
+			p2scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p2score.toString());
+			p2scoreText.setFormat (null, 120, 0xFF6600, "right");
 			add(p2scoreText);
  
 		} // end function create
