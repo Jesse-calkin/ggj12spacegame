@@ -21,8 +21,8 @@ package Weapons
 		
 		public function VenomSpitter(alien:AlienClass) 
 		{
-			super("VenomSpitter");
-			makeImageBullet(_venomCount, VenomBomb, ImageFiles.venomImg, alien.x, alien.y);
+			super("VenomSpitter", alien);
+			makeImageBullet(_venomCount, VenomBomb, ImageFiles.venomImg, 0, 0);
 			setBulletSpeed(_startSpeed);
 			setBulletAcceleration(_acceleration.x, _acceleration.y, _maxSpeed.x, _maxSpeed.y);
 			setBulletBounds(FlxG.worldBounds);
