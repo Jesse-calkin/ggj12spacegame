@@ -118,6 +118,7 @@ package Game.Player
 				powerupTime += FlxG.elapsed;
 				
 				_angularAcceleration = 400;
+				angularDrag = 400;
 				maxAngular = 200;
 				//hasMoveSpeed = false;
 			}
@@ -129,8 +130,11 @@ package Game.Player
 				if (hasMoveSpeed && powerupTime > MoveSpeed.TIME)
 				{
 					_angularAcceleration = 300;
+					angularDrag = 300;
 					maxAngular = 100;
 					powerupTime = 0;
+					
+					hasMoveSpeed = false;
 				}
 				
 				if (shieldSprite.exists)
