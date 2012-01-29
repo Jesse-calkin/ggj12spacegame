@@ -21,7 +21,7 @@ package
 			
 			Powerup.powerupsSpawned = 0;
 			Powerup.alienKillGoal = FlxG.random() * 6 + 7;
-			trace(Powerup.alienKillGoal);
+			//trace(Powerup.alienKillGoal);
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
