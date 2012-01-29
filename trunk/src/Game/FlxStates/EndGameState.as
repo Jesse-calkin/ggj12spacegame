@@ -1,6 +1,7 @@
 package Game.FlxStates
 {
 	import org.flixel.*;
+	
 	import Game.FlxStates.MenuState;
 	import Game.FlxStates.PlayState;
 	import Game.Utility.*;
@@ -77,7 +78,6 @@ package Game.FlxStates
  
 			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.justPressed("ENTER"))
 			{
-				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
@@ -86,7 +86,6 @@ package Game.FlxStates
 			
 			if (FlxG.keys.justPressed("R"))
 			{
-				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();

@@ -5,6 +5,7 @@ package Game.Weapons
 	import org.flixel.FlxSound;
 	import org.flixel.FlxG;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
+	
 	import Game.Player.SatelliteClass;
 	import Game.Utility.ImageFiles;
 	import Game.Utility.SoundFiles;
