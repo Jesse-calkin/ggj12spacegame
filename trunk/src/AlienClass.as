@@ -23,7 +23,6 @@ package
 		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
 		private const _MaxFireDelay:uint = 4;
-		private const _SpawnDistanceFromScreen:uint = 80;
 		private const _SpawnDistanceFromScreenX:uint = 15;
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
