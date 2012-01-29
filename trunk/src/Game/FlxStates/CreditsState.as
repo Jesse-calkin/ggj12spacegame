@@ -75,7 +75,7 @@ package Game.FlxStates
 			
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return");
-			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
+			instructions.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(instructions);
  
 		} // end function create
