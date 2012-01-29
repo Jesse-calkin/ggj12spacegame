@@ -89,12 +89,12 @@ package
 				Registry.player1Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.RIGHT)
+			if (FlxG.keys.RIGHT || FlxG.keys.NUMPADSIX)
 			{
 				Registry.player2Satellite.rotate(SatelliteClass.CLOCKWISE);
 			}
 			
-			if (FlxG.keys.LEFT)
+			if (FlxG.keys.LEFT || FlxG.keys.NUMPADFOUR)
 			{
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
@@ -104,7 +104,7 @@ package
 				Registry.player1Satellite.Fire();
 			}
 			
-			if (FlxG.keys.justPressed("UP"))
+			if (FlxG.keys.justPressed("UP") || FlxG.keys.justPressed("NUMPADEIGHT"))
 			{
 				Registry.player2Satellite.Fire();
 			}
