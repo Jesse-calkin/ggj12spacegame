@@ -3,6 +3,7 @@ package
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import Weapons.Rocket;
+	import Weapons.VenomSpitter;
 	/**
 	 * ...
 	 * @author Lachlan McInnes
@@ -34,7 +35,7 @@ package
 		private var _fireDelayTimer:Number;
 		private var _nextFireTime:Number;
 		private var _clockwiseRotation:Boolean;
-		private var _alienGun:FlxWeapon;
+		private var _alienGun:VenomSpitter;
 		private var _newMob:Boolean;
 		public var isActive:Boolean;
 		
@@ -42,11 +43,7 @@ package
 		{
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
-			_alienGun = new FlxWeapon("alienGun", this);
-			_alienGun.makeImageBullet(1, Rocket, ImageFiles.rocketImg); //<----------------------------TODO: change to use alien bullet art
-			_alienGun.setBulletSpeed(120);
-			_alienGun.setBulletAcceleration(10, 10, 130, 130);
-			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
+			_alienGun = new VenomSpitter(this);
 			FlxG.state.add(_alienGun.group);
 			
 			_newMob = newMob;
