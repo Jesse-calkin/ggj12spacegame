@@ -18,7 +18,12 @@ package
 		{
 			Registry.p1score = 0;
 			Registry.p2score = 0;
-			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
+
+			Registry.backgroundtheme = new FlxSound();
+			Registry.backgroundtheme.loadEmbedded(SoundFiles.themeSnd, true)
+			Registry.backgroundtheme.volume = .5;
+			Registry.backgroundtheme.play();
+			
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);
 			add(background);
