@@ -11,8 +11,8 @@ package
 		{
 			Registry.endgameTheme = new FlxSound();
 			Registry.endgameTheme.loadEmbedded(SoundFiles.gameOverSnd, true)
-			Registry.endgameTheme.volume = 1;
-			Registry.endgameTheme.play();
+			Registry.endgameTheme.volume = .5;
+			//Registry.endgameTheme.play();
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
@@ -28,8 +28,9 @@ package
 			{
 				var player2Win:FlxText;
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
-				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player1WinsSnd);
-				player2Win.setFormat (null, 64, 0xFF6600, "center");
+				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player2WinsSnd);
+				winnerSound.volume = 2;
+				player2Win.setFormat (null, 64, 0xFF7700, "center");
 				add(player2Win);
 				Registry.p2score += 1;
 			}
@@ -38,12 +39,14 @@ package
 			{
 				var player1Win:FlxText;
 				player1Win = new FlxText(0, 150, FlxG.width, "Blue Player Wins!!!");
-				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player2WinsSnd);
-				player1Win.setFormat (null, 64, 0x00CCFF, "center");
+				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player1WinsSnd);
+				winnerSound.volume = 2;
+				player1Win.setFormat (null, 64, 0x004CFF, "center");
 				add(player1Win);
 				Registry.p1score += 1;
 			}
 			winnerSound.play();
+			Registry.endgameTheme.play();
 			
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return to Menu");
@@ -57,12 +60,12 @@ package
 			
 			var p1scoreText:FlxText;
 			p1scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p1score.toString());
-			p1scoreText.setFormat (null, 120, 0x00CCFF, "left");
+			p1scoreText.setFormat (null, 120, 0x004CFF, "left");
 			add(p1scoreText);
 			
 			var p2scoreText:FlxText;
 			p2scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p2score.toString());
-			p2scoreText.setFormat (null, 120, 0xFF6600, "right");
+			p2scoreText.setFormat (null, 120, 0xFF7700, "right");
 			add(p2scoreText);
  
 		} // end function create
@@ -74,7 +77,6 @@ package
  
 			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.justPressed("ENTER"))
 			{
-				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
@@ -83,7 +85,6 @@ package
 			
 			if (FlxG.keys.justPressed("R"))
 			{
-				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
