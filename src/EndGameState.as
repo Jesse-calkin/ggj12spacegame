@@ -5,10 +5,12 @@ package
 	public class EndGameState extends FlxState
 	{
 		private var tempSound:FlxSound;
+		private var music:FlxSound;
 		
 		override public function create():void
 		{
-			FlxG.stream("../data/sounds/music/game over.mp3", 1, true);
+			music = new FlxSound().loadEmbedded(SoundFiles.gameOverSnd, true);
+			music.play();
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
@@ -18,10 +20,13 @@ package
 			title.setFormat (null, 32, 0x00FF00, "center");
 			add(title);
 			
+			var winnerSound:FlxSound;
+			
 			if (!Registry.player1Planet.alive)
 			{
 				var player2Win:FlxText;
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
+				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player1WinsSnd);
 				player2Win.setFormat (null, 64, 0xFF6600, "center");
 				add(player2Win);
 				Registry.p2score += 1;
@@ -31,10 +36,12 @@ package
 			{
 				var player1Win:FlxText;
 				player1Win = new FlxText(0, 150, FlxG.width, "Blue Player Wins!!!");
+				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player2WinsSnd);
 				player1Win.setFormat (null, 64, 0x00CCFF, "center");
 				add(player1Win);
 				Registry.p1score += 1;
 			}
+			winnerSound.play();
 			
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return to Menu");
@@ -65,6 +72,7 @@ package
  
 			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.justPressed("ENTER"))
 			{
+				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				FlxG.switchState(new MenuState());
@@ -72,6 +80,7 @@ package
 			
 			if (FlxG.keys.justPressed("R"))
 			{
+				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				FlxG.switchState(new PlayState());
