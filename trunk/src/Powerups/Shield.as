@@ -10,18 +10,25 @@ package Powerups
 	public class Shield extends Powerup
 	{
 		
-		public function Shield(X:Number=0,Y:Number=0,SimpleGraphic:Class=null) 
+		public function Shield() 
 		{
-			super(X, Y, SimpleGraphic);
+			super(0, 0, ImageFiles.shieldPowerupImg);
 		}
 		
-		protected override spawn()
+		override protected function spawn():void
 		{
+			x = FlxG.width / 2 - width / 2;
+			
 			// Spawn on the top
 			if (FlxG.random() < .5)
 			{
-				x = FlxG.width / 2 - width / 2;
-				
+				y = -height;
+				velocity.y = POWERUP_SPEED * FlxG.elapsed;
+			}
+			else
+			{
+				y = FlxG.height;
+				velocity.y = -POWERUP_SPEED * FlxG.elapsed;
 			}
 		}
 		
