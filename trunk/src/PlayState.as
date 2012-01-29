@@ -162,8 +162,15 @@ package
 				Registry.player2Satellite.Fire();
 			}
 			
-			Registry.player1Satellite.idle();
-			Registry.player2Satellite.idle();
+			if (Registry.player1Satellite.angularAcceleration == 0)
+			{
+				Registry.player1Satellite.idle();
+			}
+			
+			if (Registry.player2Satellite.angularAcceleration == 0)
+			{
+				Registry.player2Satellite.idle();
+			}
 		}
 		
 		public function isGameOver():Boolean
