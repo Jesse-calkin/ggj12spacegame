@@ -7,6 +7,7 @@ package
 	import Powerups.MoveSpeed;
 	import Powerups.Powerup;
 	import Powerups.Shield;
+	import Weapons.Rocket;
 	
 	public class PlayState extends FlxState
 	{	
@@ -217,12 +218,18 @@ package
 			return !(Registry.player1Planet.alive && Registry.player2Planet.alive);
 		}
 		
-		public function AlienHit(rocket:Bullet, alien:AlienClass):void
+		public function AlienHit(bullet:Bullet, alien:AlienClass):void
 		{
-			//TODO: Add dmg to bullets instead of kills.
-			rocket.kill();
-			//TODO: Switch hard coded dmg with bullet dmg.
-			alien.takeDamage(1); 
+			var rocket:Rocket = Rocket(bullet);
+			if (rocket != null)
+			{
+				alien.takeDamage(rocket.GetDmg());
+			}
+			else
+			{
+				alien.takeDamage(1);
+			}
+			bullet.kill();
 		}
 		
 		public function PowerupHitByOne(rocket:Bullet, powerUp:Powerup):void
