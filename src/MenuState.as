@@ -79,11 +79,6 @@ package
 				FlxG.flash(0xffffffff, 0.75);
 				FlxG.fade(0xff000000, 1, onFade);
 			}
-			
-			if (FlxG.keys.justPressed("EXIST"))
-			{
-
-			}
 		}
 
 		private function onFade():void
