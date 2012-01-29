@@ -1,9 +1,9 @@
 package Game.FlxStates
 {
 	import org.flixel.*;
-	import Game.Utility.ImageFiles;
-	import Game.Utility.Registry;
-	import Game.Utility.SoundFiles;
+	import Game.FlxStates.MenuState;
+	import Game.FlxStates.PlayState;
+	import Game.Utility.*;
 	
 	public class EndGameState extends FlxState
 	{
