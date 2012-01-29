@@ -13,12 +13,10 @@ package
 		public static const CLOCKWISE:String = "clockwise";
 		public static const COUNTER_CLOCKWISE:String = "counterClockwise";
 		
-		public var radius:Number = 55;
-		public var speed:Number = 1.3;
+		public var radius:Number;
 		public var xcenter:Number;
 		public var ycenter:Number;
-		public var degree:Number = 0;
-		public var radian:Number = (degree / 180) * Math.PI;
+		public var radian:Number = 0;
 		
 		public var powerupTime:Number;
 		public var hasShield:Boolean;
@@ -66,10 +64,8 @@ package
 		
 		public function rotate(direction:String):void
 		{
-			degree = (direction == CLOCKWISE ? degree + speed : degree - speed);
-			degree %= 360;
-			angle = degree;
-			radian = (degree / 180) * Math.PI;
+			angularAcceleration = (direction == CLOCKWISE) ? 300 : -300;
+			radian = (angle / 180) * Math.PI;
 			
 			//var pixel:FlxSprite = new FlxSprite(xcenter + Math.cos(radian) * (radius / 2 + 5), ycenter + Math.sin(radian) * (radius / 2 + 5)).makeGraphic(1, 1);
 			//FlxG.state.add(pixel);
@@ -93,8 +89,8 @@ package
 		
 		public function Fire():void
 		{
-			_rocketLauncher.fireFromAngle(degree);
-			_rocketLauncher.currentBullet.angle = degree + 90;
+			_rocketLauncher.fireFromAngle(angle);
+			_rocketLauncher.currentBullet.angle = angle + 90;
 			_rocketLauncher.currentBullet.x -= 2; // correct for images
 			_rocketLauncher.currentBullet.y -= 3; // correct for images
 		}

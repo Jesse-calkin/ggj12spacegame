@@ -46,10 +46,14 @@ package
 			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 			
-			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
+			Registry.player1Satellite.maxAngular = 100;
+			Registry.player1Satellite.angularDrag = 300;
 			add(Registry.player1Satellite);
 			
-			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
+			Registry.player2Satellite.maxAngular = 100;
+			Registry.player2Satellite.angularDrag = 300;
 			add(Registry.player2Satellite);
 			
 			var shieldParticleTop:Shield = new Shield();
@@ -104,11 +108,11 @@ package
 		{
 			Registry.player1Satellite.velocity.x = 0;
 			Registry.player1Satellite.velocity.y = 0;
-			Registry.player1Satellite.angularVelocity = 0;
+			Registry.player1Satellite.angularAcceleration = 0;
 			
 			Registry.player2Satellite.velocity.x = 0;
 			Registry.player2Satellite.velocity.y = 0;
-			Registry.player2Satellite.angularVelocity = 0;
+			Registry.player2Satellite.angularAcceleration = 0;
 			
 			getInput();
 			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
