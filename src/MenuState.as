@@ -8,20 +8,25 @@ package
 		private var controlshighlighted:Boolean = false;
 		private var creditshighlighted:Boolean = false;
 		private var menuCounter:int = 1;
+		
+		private var newgame:FlxSprite;
+		private var controls:FlxSprite;
+		private var credits:FlxSprite;
 				
 		override public function create():void
 		{
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);
 			add(background);
-			
+
+			newgame = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
+			add(newgame);
+			controls = new FlxSprite(160, 230, ImageFiles.controlsImg);
+			add(controls);
+			credits = new FlxSprite(160, 298, ImageFiles.creditsImg);
+			add(credits);
 			
 
-			var newgameSel:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
-			add(newgameSel);
-			var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
-			add(controls);
-			var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
-			add(credits);
+
 						
 			var instructions:FlxText;
 			
@@ -98,28 +103,39 @@ package
 			switch(menuCounter)
 			{
 				case 1:
-					var newgameSel:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
-					add(newgameSel);
-					var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
-					add(controls);
-					var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
-					add(credits);
+					//var newgameSel:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
+				//	add(newgameSel);
+				//	var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
+				//	add(controls);
+				//	var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
+				//	add(credits);
+					
+					newgame.loadGraphic(ImageFiles.newgameSelImg)
+					controls.loadGraphic(ImageFiles.controlsImg)
+					credits.loadGraphic(ImageFiles.creditsImg)
+					
 					break;
 				case 2:
-					var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
-					add(newgame);
-					var controlsSel:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsSelImg);
-					add(controlsSel);
-					var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
-					add(credits);		
+					//var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
+					//add(newgame);
+					//var controlsSel:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsSelImg);
+					//add(controlsSel);
+					//var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
+					//add(credits);		
+					newgame.loadGraphic(ImageFiles.newgameImg)
+					controls.loadGraphic(ImageFiles.controlsSelImg)
+					credits.loadGraphic(ImageFiles.creditsImg)
 					break;
 				case 3:
-					var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
-					add(newgame);
-					var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
-					add(controls);
-					var creditsSel:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsSelImg);
-					add(creditsSel);	
+					//var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
+					//add(newgame);
+					//var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
+					//add(controls);
+					//var creditsSel:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsSelImg);
+					//add(creditsSel);	
+					newgame.loadGraphic(ImageFiles.newgameImg)
+					controls.loadGraphic(ImageFiles.controlsImg)
+					credits.loadGraphic(ImageFiles.creditsSelImg)
 					break;
 			}
 
