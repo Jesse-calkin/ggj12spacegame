@@ -99,12 +99,12 @@ package
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.justPressed(FlxG.keys.W))
+			if (FlxG.keys.W)
 			{
 				Registry.player1Satellite.Fire();
 			}
 			
-			if (FlxG.keys.justPressed(FlxG.keys.UP))
+			if (FlxG.keys.UP)
 			{
 				Registry.player2Satellite.Fire();
 			}
