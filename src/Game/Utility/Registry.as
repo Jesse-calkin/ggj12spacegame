@@ -1,8 +1,10 @@
 package Game.Utility
 {
 	import flash.display.Stage;
+	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxDelay;
+	
 	import Game.Player.SatelliteClass;
 		
 	public class Registry

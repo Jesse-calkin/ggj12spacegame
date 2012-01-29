@@ -1,6 +1,7 @@
 package Game.Player
 {
 	import org.flixel.*;
+	
 	import Game.FlxStates.PlayState;
 	import Game.Powerups.MoveSpeed;
 	import Game.Weapons.RocketLauncher;

@@ -2,15 +2,15 @@ package Game.FlxStates
 {
 	import flash.display.Sprite;
 	import flash.display.Graphics;
+	
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
+	
 	import Game.Enemies.AlienClass;
 	import Game.Player.SatelliteClass;
 	import Game.Powerups.*;
 	import Game.Weapons.Rocket;
-	import Game.Utility.ImageFiles;
-	import Game.Utility.Registry;
-	import Game.Utility.SoundFiles;
+	import Game.Utility.*;
 	
 	public class PlayState extends FlxState
 	{

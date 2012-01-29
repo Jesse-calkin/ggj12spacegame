@@ -1,6 +1,7 @@
 package
 {
 	import org.flixel.*; //Allows you to refer to flixel objects in your code
+	
 	import Game.FlxStates.*;
 	
 	[SWF(width = "800", height = "400", backgroundColor = "#000000")] //Set the size and color of the Flash file
