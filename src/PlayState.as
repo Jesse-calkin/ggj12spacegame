@@ -78,12 +78,12 @@ package
 			
 			var p1scoreText:FlxText;
 			p1scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p1score.toString());
-			p1scoreText.setFormat (null, 32, 0x00CCFF, "left");
+			p1scoreText.setFormat (null, 32, 0x00CCFF, "left", 0xFFFFFFFF);
 			add(p1scoreText);
 			
 			var p2scoreText:FlxText;
 			p2scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p2score.toString());
-			p2scoreText.setFormat (null, 32, 0xFF6600, "right");
+			p2scoreText.setFormat (null, 32, 0xFF6600, "right", 0xFFFFFFFF);
 			add(p2scoreText);
 		}
 		
