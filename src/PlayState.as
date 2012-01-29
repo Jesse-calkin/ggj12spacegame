@@ -162,6 +162,8 @@ package
 				Registry.player2Satellite.Fire();
 			}
 			
+			Registry.player1Satellite.idle();
+			Registry.player2Satellite.idle();
 		}
 		
 		public function isGameOver():Boolean
