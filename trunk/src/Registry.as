@@ -22,7 +22,6 @@ package
 		public static var timer:FlxDelay;
 		public static var leftsnakeWiggle:FlxSprite;
 		public static var rightsnakeWiggle:FlxSprite;
-				
 		
 		public function Registry()
 		{

@@ -10,7 +10,7 @@ package
 	import Weapons.Rocket;
 	
 	public class PlayState extends FlxState
-	{	
+	{
 		public static var alienGroup:FlxGroup;
 		
 		override public function create():void
@@ -90,7 +90,7 @@ package
 			Registry.spawnerGroup.add(Registry.topShieldSpawner);
 			Registry.spawnerGroup.add(Registry.bottomShieldSpawner);			
 			Registry.spawnerGroup.add(Registry.topMoveSpeedSpawner);
-			Registry.spawnerGroup.add(Registry.topMoveSpeedSpawner);
+			Registry.spawnerGroup.add(Registry.bottomMoveSpeedSpawner);
 			//Registry.topPowerUpSpawner.start();
 			//Registry.bottomPowerUpSpawner.start();
 			
