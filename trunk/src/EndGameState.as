@@ -6,6 +6,8 @@ package
 	{
 		override public function create():void
 		{
+			FlxG.stream("../data/sounds/music/game over.mp3", 0.5, true);
+			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
 			
@@ -33,9 +35,14 @@ package
 
 			
 			var instructions:FlxText;
-			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Play Again");
+			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return to Menu");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
+			
+			var replaytext:FlxText;
+			replaytext = new FlxText(0, FlxG.height - 22, FlxG.width, "Press R To Play Again");
+			replaytext.setFormat (null, 8, 0xFFFFFFFF, "center");
+			add(replaytext);
  
 		} // end function create
  
@@ -48,9 +55,13 @@ package
 			{
 				FlxG.switchState(new MenuState());
 			}
+			
+			if (FlxG.keys.justPressed("R"))
+			{
+				FlxG.switchState(new PlayState());
+			}
  
 		} // end function update
- 
  
 		public function EndGameState()
 		{

@@ -15,6 +15,8 @@ package
 				
 		override public function create():void
 		{
+			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
+			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);
 			add(background);
 
@@ -24,12 +26,8 @@ package
 			add(controls);
 			credits = new FlxSprite(160, 298, ImageFiles.creditsImg);
 			add(credits);
-			
-
-
 						
 			var instructions:FlxText;
-			
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Select");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
@@ -80,6 +78,11 @@ package
 			{
 				FlxG.flash(0xffffffff, 0.75);
 				FlxG.fade(0xff000000, 1, onFade);
+			}
+			
+			if (FlxG.keys.justPressed("EXIST"))
+			{
+
 			}
 		}
 

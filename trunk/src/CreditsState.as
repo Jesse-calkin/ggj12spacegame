@@ -50,7 +50,7 @@ package
 			add(lachlan);
 			//------------------------------------------------------------------------
 			var planning:FlxText;
-			planning = new FlxText(0, 230, FlxG.width, "Planning:");
+			planning = new FlxText(0, 230, FlxG.width, "Planning/Quitting:");
 			planning.setFormat (null, 24, 0x00F5FF, "center");
 			add(planning);		
 
@@ -69,17 +69,12 @@ package
 			robert.setFormat (null, 16, 0xFFFFFFFF, "center");
 			add(robert);
 			
-
-			
-
-			
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
  
 		} // end function create
- 
  
 		override public function update():void
 		{
@@ -91,7 +86,6 @@ package
 			}
  
 		} // end function update
- 
  
 		public function CreditsState()
 		{
