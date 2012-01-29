@@ -232,11 +232,23 @@ package
 					{
 					case 1:
 						Registry.player1Planet.health -= _AlienBulletDamageToPlanet;
-						var health1Percentage:Number = Registry.player1Planet.health / 100;
+						var health1:Number = Registry.player1Planet.health;
 						
-						if (80 <= health1Percentage < 100)
+						if (health1 >= 80 && health1 < 100)
 						{
-							
+							Registry.player1Planet.play("planet2");
+						}
+						else if (health1 >= 60 && health1 < 80)
+						{
+							Registry.player1Planet.play("planet3");
+						}
+						else if (health1 >= 40 && health1 < 60)
+						{
+							Registry.player1Planet.play("planet4");
+						}
+						else if (health1 >= 20 && health1 < 40)
+						{
+							Registry.player1Planet.play("planet5");
 						}
 						
 						Registry.player1Planet.flicker(0.2);
@@ -248,7 +260,24 @@ package
 						break;
 					case 2:
 						Registry.player2Planet.health -= _AlienBulletDamageToPlanet;
-						var health2Percentage:Number = Registry.player2Planet.health / 100;
+						var health2:Number = Registry.player2Planet.health;
+						if (health2 >= 80 && health2 < 100)
+						{
+							Registry.player2Planet.play("planet2");
+						}
+						else if (health2 >= 60 && health2 < 80)
+						{
+							Registry.player2Planet.play("planet3");
+						}
+						else if (health2 >= 40 && health2 < 60)
+						{
+							Registry.player2Planet.play("planet4");
+						}
+						else if (health2 >= 20 && health2 < 40)
+						{
+							Registry.player2Planet.play("planet5");
+						}
+						
 						Registry.player2Planet.flicker(0.2);
 						FlxG.shake(0.01, 0.2);
 						if (Registry.player2Planet.health <= 0 && Registry.player1Planet.alive)
