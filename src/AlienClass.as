@@ -204,7 +204,27 @@ package
 					tempYDifference = _alienGun.currentBullet.y - getPlanetYPosition();
 				}
 				
-				if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 30)
+				if (Registry.player1Satellite.powerupTime > 0 && _targetPlayer == 1)
+				{
+					if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 55)
+					{
+						_alienGun.currentBullet.kill();
+						
+						Registry.player1Satellite.shieldSprite.exists = false;
+						Registry.player1Satellite.powerupTime = 0;
+					}
+				}
+				else if (Registry.player2Satellite.powerupTime > 0 && _targetPlayer == 2)
+				{
+					if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 55)
+					{
+						_alienGun.currentBullet.kill();
+						
+						Registry.player2Satellite.shieldSprite.exists = false;
+						Registry.player2Satellite.powerupTime = 0;
+					}
+				}
+				else if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 30)
 				{
 					var temp:FlxSound;
 					temp = new FlxSound().loadEmbedded(SoundFiles.asteroidExplosionSnd);
@@ -244,7 +264,7 @@ package
 				if (--Powerup.alienKillGoal <= 0)
 				{
 					Powerup.powerupsSpawned++;
-					Powerup.alienKillGoal = FlxG.random() * 6 + 7 + Powerup.powerupsSpawned;
+					Powerup.alienKillGoal = FlxG.random() * 6 + 7 + Powerup.powerupsSpawned * 3;
 					trace(Powerup.alienKillGoal);
 					
 					if (FlxG.random() < .5)

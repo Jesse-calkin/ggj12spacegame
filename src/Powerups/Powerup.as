@@ -21,10 +21,16 @@ package Powerups
 			//super(X, Y, SimpleGraphic);
 		}
 		
-		protected function spawn():void
+		public function apply(who:SatelliteClass):void
 		{
-			
+			kill();
+			trace("Powerup base class apply");
 		}
+		
+		//override public function update():void
+		//{
+			//
+		//}
 	}
 
 }
