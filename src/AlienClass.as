@@ -78,25 +78,11 @@ package
 				}
 				else
 				{
-					//TODO: CHANGE! Put straifing and fireing AI here
-					//takeDamage(1); //testing only
-					
-					inRangeCombatAI();  //<------------------------------------------------------------------<
+					checkAttack();
 				}
 				
 				draw();
 			}
-		}
-		
-		private function inRangeCombatAI():void
-		{
-			combatMove();
-			checkAttack();
-		}
-		
-		private function combatMove():void
-		{
-			
 		}
 		
 		private function checkAttack():void

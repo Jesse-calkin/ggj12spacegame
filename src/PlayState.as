@@ -8,7 +8,6 @@ package
 	public class PlayState extends FlxState
 	{	
 		public static var alienGroup:FlxGroup;	
-		//private var asteroid:AsteroidClass;
 		
 		private var testCircle:FlxSprite = new FlxSprite();
 		
@@ -48,9 +47,6 @@ package
 			add(Registry.player1Satellite._rocketLauncher.group);
 			add(Registry.player2Satellite._rocketLauncher.group);
 			
-			//asteroid = new AsteroidClass();
-			//add(asteroid);
-			
 			alienGroup = new FlxGroup(100);
 			alienGroup.add(new AlienClass(1));
 			alienGroup.add(new AlienClass(2));
@@ -70,8 +66,8 @@ package
 			getInput();
 			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
 			FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, alienGroup, AlienHit);		
-			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, Registry.player2Planet, PlanetHit);
-			FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, Registry.player1Planet, PlanetHit);
+			//FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, Registry.player2Planet, PlanetHit);
+			//FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, Registry.player1Planet, PlanetHit);
 			
 			super.update();
 		}	
