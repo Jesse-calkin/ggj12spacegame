@@ -8,6 +8,7 @@ package
 		[Embed(source = "../data/gfx/Snake.png")] public static var snakeImg:Class;
 		[Embed(source = "../data/gfx/Satellite.png")] public static var satelliteImg:Class;
 		[Embed(source = "../data/gfx/Rocket.png")] public static var rocketImg:Class;
+		[Embed(source = "../data/gfx/Venom.png")] public static var venomImg:Class;
 		[Embed(source = "../data/gfx/controls.png")] public static var controlsImg:Class;
 		[Embed(source = "../data/gfx/controls-sel.png")] public static var controlsSelImg:Class;
 		[Embed(source = "../data/gfx/credits.png")] public static var creditsImg:Class;

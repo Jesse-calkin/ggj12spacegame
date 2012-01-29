@@ -46,7 +46,8 @@ package
 			x = xcenter;
 			y = ycenter - height / 2;
 			
-			_rocketLauncher = new RocketLauncher(this)
+			_rocketLauncher = new RocketLauncher(this);
+			FlxG.state.add(_rocketLauncher.group);
 		}
 		
 		public function rotate(direction:String):void
@@ -78,10 +79,8 @@ package
 		
 		public function Fire():void
 		{
-			//trace("X: " + x);
-			//trace("Y: " + y);
-			//trace("D: " + degree);
 			_rocketLauncher.fireFromAngle(degree);
+			_rocketLauncher.currentBullet.angle = degree + 90;
 		}
 		
 	}
