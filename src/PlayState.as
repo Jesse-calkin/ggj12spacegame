@@ -4,6 +4,8 @@ package
 	import flash.display.Graphics;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
+	import Powerups.Powerup;
+	import Powerups.Shield;
 	
 	public class PlayState extends FlxState
 	{	
@@ -33,6 +35,24 @@ package
 			
 			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player2Satellite);
+			
+			var shieldParticle:Shield = new Shield();
+			Registry.topPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticle.width / 2, -shieldParticle.height, 1);
+			Registry.topPowerUpSpawner.setXSpeed(0, 0);
+			Registry.topPowerUpSpawner.setYSpeed(Powerup.POWERUP_SPEED * FlxG.elapsed, Powerup.POWERUP_SPEED * FlxG.elapsed);
+			Registry.topPowerUpSpawner.setRotation(0, 0);
+			Registry.topPowerUpSpawner.add(new Shield());
+			
+			Registry.bottomPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticle.width / 2, FlxG.height, 1);
+			Registry.bottomPowerUpSpawner.setXSpeed(0, 0);
+			Registry.bottomPowerUpSpawner.setYSpeed(-Powerup.POWERUP_SPEED * FlxG.elapsed, -Powerup.POWERUP_SPEED * FlxG.elapsed);
+			Registry.bottomPowerUpSpawner.setRotation(0, 0);
+			Registry.bottomPowerUpSpawner.add(new Shield());
+			
+			add(Registry.topPowerUpSpawner);
+			add(Registry.bottomPowerUpSpawner);
+			Registry.topPowerUpSpawner.start();
+			Registry.bottomPowerUpSpawner.start();
 			
 			//testCircle = new FlxSprite();
 			//testCircle.makeGraphic(Registry.player1Satellite.radius, Registry.player1Satellite.radius, 0x00000000);
