@@ -15,7 +15,7 @@ package
 		public static const COUNTER_CLOCKWISE:String = "counterClockwise";
 		
 		public var radius:Number = 55;
-		public var speed:Number = 1;
+		public var speed:Number = 1.3;
 		public var xcenter:Number;
 		public var ycenter:Number;
 		public var degree:Number = 0;

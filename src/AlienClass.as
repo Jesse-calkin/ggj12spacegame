@@ -15,7 +15,7 @@ package
 		private const _Planet2XPos:uint = Registry.player2Planet.x + Registry.player2Planet.width/2;
 		private const _Planet2YPos:uint = Registry.player2Planet.y + Registry.player2Planet.height/2;
 		private const _StartingHealth:uint = 1;
-		private const _OnDeathExtraSpawnPercent:uint = 20;
+		private const _OnDeathExtraSpawnPercent:uint = 25;
 		private const _HoldingPositionX:int = 100;
 		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
@@ -24,9 +24,9 @@ package
 		private const _SpawnDistanceFromScreenX:uint = 15;
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
-		private const _AlienBulletDamageToPlanet:uint = 20;
-		private const _AlienSpeedMultiplier:uint = 35;
-		private const _AlienRotationSpeed:Number = 35;
+		private const _AlienBulletDamageToPlanet:uint = 15;
+		private const _AlienSpeedMultiplier:uint = 40;
+		private const _AlienRotationSpeed:Number = 40;
 		
 		//Variables
 		private var _targetPlayer:uint;
@@ -35,9 +35,10 @@ package
 		private var _nextFireTime:Number;
 		private var _clockwiseRotation:Boolean;
 		private var _alienGun:FlxWeapon;
+		private var _newMob:Boolean;
 		public var isActive:Boolean;
 		
-		public function AlienClass(targetPlayer:uint = 0)
+		public function AlienClass(targetPlayer:uint = 0, newMob:Boolean = false)
 		{
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
@@ -47,6 +48,8 @@ package
 			_alienGun.setBulletAcceleration(10, 10, 130, 130);
 			_alienGun.setBulletBounds(new FlxRect(0, 0, FlxG.width, FlxG.height));
 			FlxG.state.add(_alienGun.group);
+			
+			_newMob = newMob;
 			
 			if (targetPlayer != 0)
 			{
@@ -64,6 +67,14 @@ package
 		
 		override public function update():void 
 		{
+			if (_newMob && (x > 0 && x < FlxG.width) && (y > 0 && y < FlxG.height))
+			{
+				_newMob = false;
+				var alienSound:FlxSound = new FlxSound();
+				alienSound.loadEmbedded(SoundFiles.alienSnd);
+				alienSound.play();
+			}
+			
 			if (isActive)
 			{
 				if (!_inRangeOfPlayer)
@@ -160,11 +171,15 @@ package
 				
 				if (Math.sqrt((tempXDifference * tempXDifference) + (tempYDifference * tempYDifference)) < 30)
 				{
+					var temp:FlxSound;
+					temp = new FlxSound().loadEmbedded(SoundFiles.asteroidExplosionSnd);
+					temp.play();
 					switch(_targetPlayer)
 					{
 					case 1:
 						Registry.player1Planet.health -= _AlienBulletDamageToPlanet;
 						Registry.player1Planet.flicker(0.2);
+						FlxG.shake(0.01, 0.2);
 						if (Registry.player1Planet.health <= 0 && Registry.player2Planet.alive)
 						{
 							Registry.player1Planet.kill();
@@ -173,6 +188,7 @@ package
 					case 2:
 						Registry.player2Planet.health -= _AlienBulletDamageToPlanet;
 						Registry.player2Planet.flicker(0.2);
+						FlxG.shake(0.01, 0.2);
 						if (Registry.player2Planet.health <= 0 && Registry.player1Planet.alive)
 						{
 							Registry.player2Planet.kill();
@@ -193,10 +209,7 @@ package
 				//spawn aliens on enemy
 				if (FlxG.random() > ((100 - _OnDeathExtraSpawnPercent) / 100))
 				{
-					var alienSound:FlxSound = new FlxSound();
-					alienSound.loadEmbedded(SoundFiles.alienSnd);
-					alienSound.play();
-					PlayState.alienGroup.add(new AlienClass(getNontargetPlayer()));
+					PlayState.alienGroup.add(new AlienClass(getNontargetPlayer(), true));
 				}
 				else
 				{
@@ -310,10 +323,10 @@ package
 				velocity.y *= -1;
 			}
 			
-			angle = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(getPlanetXPosition(), getPlanetYPosition()));
+			angle = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(getPlanetXPosition()));
 		}
 		
-		public function activate(targetPlayer:uint):void
+		public function activate(targetPlayer:uint, newMob:Boolean = false):void
 		{
 			isActive = true;
 			health = _StartingHealth;

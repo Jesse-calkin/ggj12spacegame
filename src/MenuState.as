@@ -12,6 +12,7 @@ package
 		private var newgame:FlxSprite;
 		private var controls:FlxSprite;
 		private var credits:FlxSprite;
+		private var tempSound:FlxSound;
 				
 		override public function create():void
 		{
@@ -47,6 +48,8 @@ package
 			{
 				if (menuCounter > 0 && menuCounter <= 2)
 				{
+					tempSound = new FlxSound().loadEmbedded(SoundFiles.menuMoveSnd);
+					tempSound.play();
 					menuCounter += 1;
 				}
 				
@@ -62,6 +65,8 @@ package
 			{
 				if (menuCounter > 1 && menuCounter <= 3)
 				{
+					tempSound = new FlxSound().loadEmbedded(SoundFiles.menuMoveSnd);
+					tempSound.play();
 					menuCounter -= 1;
 				}
 				
@@ -74,7 +79,9 @@ package
 			}
 			
 			if (FlxG.keys.justPressed("SPACE"))
-			{
+			{	
+				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
+				tempSound.play();
 				FlxG.flash(0xffffffff, 0.75);
 				FlxG.fade(0xff000000, 1, onFade);
 			}
