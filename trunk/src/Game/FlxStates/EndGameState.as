@@ -23,7 +23,7 @@ package Game.FlxStates
 			
 			var title:FlxText;
 			title = new FlxText(0, 8, FlxG.width, "Game Over");
-			title.setFormat (null, 32, 0xFF7700, "center");
+			title.setFormat (null, 32, 0x1A9B05, "center");
 			add(title);
 			
 			var winnerSound:FlxSound;
@@ -33,7 +33,7 @@ package Game.FlxStates
 				var player2Win:FlxText;
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
 				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player1WinsSnd);
-				player2Win.setFormat (null, 64, 0x1A9B05, "center");
+				player2Win.setFormat (null, 64, 0xFF7700, "center");
 				add(player2Win);
 				Registry.p2score += 1;
 			}
