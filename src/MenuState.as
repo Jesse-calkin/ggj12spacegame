@@ -45,7 +45,7 @@ package
 		{
 			if (FlxG.keys.justPressed("DOWN"))
 			{
-				if (menuCounter > 0 && menuCounter < 4)
+				if (menuCounter > 0 && menuCounter <= 2)
 				{
 					menuCounter += 1;
 				}
@@ -60,7 +60,7 @@ package
 			
 			if (FlxG.keys.justPressed("UP"))
 			{
-				if (menuCounter > 0 && menuCounter < 4)
+				if (menuCounter > 1 && menuCounter <= 3)
 				{
 					menuCounter -= 1;
 				}
