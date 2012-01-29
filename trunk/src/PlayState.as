@@ -15,7 +15,6 @@ package
 		
 		override public function create():void
 		{
-			Registry.ParticlePool = new FlxGroup();
 			FlxG.bgColor = 0xffaaaaaa;
 			
 			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
