@@ -89,11 +89,6 @@ package
 				Registry.player1Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.W)
-			{
-				Registry.player1Satellite.Fire();
-			}
-			
 			if (FlxG.keys.RIGHT)
 			{
 				Registry.player2Satellite.rotate(SatelliteClass.CLOCKWISE);
@@ -104,7 +99,12 @@ package
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.justPressed("UP"))
+			if (FlxG.keys.justPressed(FlxG.keys.W))
+			{
+				Registry.player1Satellite.Fire();
+			}
+			
+			if (FlxG.keys.justPressed(FlxG.keys.UP))
 			{
 				Registry.player2Satellite.Fire();
 			}
@@ -129,6 +129,7 @@ package
 			rocket.kill();
 			planet.hurt(20);
 		}
+		
 		/**
 		 * Draw a circle to a sprite.
 		 * 
@@ -139,7 +140,6 @@ package
 		 * @param   LineThickness   Outline thickness
 		 * @param   FillColor       Fill color 
 		 * */
-			
 		 public function drawCircle(Sprite:FlxSprite, Center:FlxPoint, Radius:Number = 30, LineColor:uint = 0xffffffff, LineThickness:uint = 1, FillColor:uint = 0xffffffff):void
 		 {
 			var gfx:Graphics = FlxG.flashGfx;
