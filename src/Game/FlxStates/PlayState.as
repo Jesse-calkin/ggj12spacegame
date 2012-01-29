@@ -236,22 +236,43 @@ package Game.FlxStates
 			bullet.kill();
 		}
 		
-		public function PowerupHitByOne(rocket:Bullet, powerUp:Powerup):void
+		public function PowerupHitByOne(rocket:Bullet, powerup:Powerup):void
 		{
+			displayPowerupText(powerup);
+			
 			rocket.kill();
-			powerUp.apply(Registry.player1Satellite);
+			powerup.apply(Registry.player1Satellite);
 		}
 		
-		public function PowerupHitByTwo(rocket:Bullet, powerUp:Powerup):void
+		public function PowerupHitByTwo(rocket:Bullet, powerup:Powerup):void
 		{
+			displayPowerupText(powerup);
+			
 			rocket.kill();
-			powerUp.apply(Registry.player2Satellite);
+			powerup.apply(Registry.player2Satellite);
 		}
 		
 		public function PlanetHit(rocket:Bullet, planet:FlxSprite):void
 		{
 			rocket.kill();
 			planet.hurt(20);
+		}
+		
+		private function displayPowerupText(powerup:Powerup):void
+		{
+			Registry.powerupText = new FlxText(0, 150, FlxG.width, null);
+			Registry.powerupText.setFormat(null, 20, Registry.menudarkgreen, "center");
+			
+			if (powerup is Game.Powerups.Shield)
+			{
+				Registry.powerupText.text = ("Shield Get!");
+			}
+			else if (powerup is Game.Powerups.MoveSpeed)
+			{
+				Registry.powerupText.text = ("Move Get!");
+			}
+			
+			add(Registry.powerupText);
 		}
 		
 		/**
