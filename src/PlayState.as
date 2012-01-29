@@ -10,7 +10,6 @@ package
 		public static var alienGroup:FlxGroup;	
 		
 		private var testCircle:FlxSprite = new FlxSprite();
-		private var starfield:StarField;
 		
 		override public function create():void
 		{
