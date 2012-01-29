@@ -10,6 +10,7 @@ package
 		public static var alienGroup:FlxGroup;	
 		
 		private var testCircle:FlxSprite = new FlxSprite();
+		private var starfield:StarField;
 		
 		override public function create():void
 		{
@@ -76,12 +77,12 @@ package
 		{
 			if (FlxG.keys.D)
 			{
-				Registry.player1Satellite.MoveClockwise();
+				Registry.player1Satellite.rotate(SatelliteClass.CLOCKWISE);
 			}
 			
 			if (FlxG.keys.A)
 			{
-				Registry.player1Satellite.MoveCounterclockwise();
+				Registry.player1Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
 			if (FlxG.keys.W)
@@ -91,12 +92,12 @@ package
 			
 			if (FlxG.keys.RIGHT)
 			{
-				Registry.player2Satellite.MoveClockwise();
+				Registry.player2Satellite.rotate(SatelliteClass.CLOCKWISE);
 			}
 			
 			if (FlxG.keys.LEFT)
 			{
-				Registry.player2Satellite.MoveCounterclockwise();
+				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
 			if (FlxG.keys.justPressed("UP"))
