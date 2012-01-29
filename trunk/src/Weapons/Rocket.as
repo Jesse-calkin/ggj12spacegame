@@ -129,7 +129,7 @@ package Weapons
 			_propulsionEmitter.x = x + 3;
 			_propulsionEmitter.y = y + 3;
 			_propulsionEmitter.minParticleSpeed = new FlxPoint(velocity.x - 2, velocity.y - 2);
-			_propulsionEmitter.maxParticleSpeed = new FlxPoint(velocity.x - 1, velocity.y - 1);;
+			_propulsionEmitter.maxParticleSpeed = new FlxPoint(velocity.x - 1, velocity.y - 1);
 			_propulsionEmitter.start(false, 1, 0.03);
 		}
 	}		
