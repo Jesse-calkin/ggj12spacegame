@@ -26,11 +26,23 @@ package
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
 			
-			Registry.player1Planet = new FlxSprite(200 - 55 / 2, (FlxG.height / 2) - 55 / 2, ImageFiles.bluePlanetImg);
+			Registry.player1Planet = new FlxSprite(200 - 55 / 2, (FlxG.height / 2) - 55 / 2);
+			Registry.player1Planet.loadGraphic(ImageFiles.bluePlanetImg, true, false, 55, 55);
+			Registry.player1Planet.addAnimation("planet1", [0]);
+			Registry.player1Planet.addAnimation("planet2", [1]);
+			Registry.player1Planet.addAnimation("planet3", [2]);
+			Registry.player1Planet.addAnimation("planet4", [3]);
+			Registry.player1Planet.addAnimation("planet5", [4]);
 			Registry.player1Planet.health = 100;
 			add(Registry.player1Planet);
 			
-			Registry.player2Planet = new FlxSprite(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.orangePlanetImg);
+			Registry.player2Planet = new FlxSprite(600 - 55 / 2 , (FlxG.height / 2) - 55 / 2);
+			Registry.player2Planet.loadGraphic(ImageFiles.orangePlanetImg, true, false, 55, 55);
+			Registry.player2Planet.addAnimation("planet1", [0]);
+			Registry.player2Planet.addAnimation("planet2", [1]);
+			Registry.player2Planet.addAnimation("planet3", [2]);
+			Registry.player2Planet.addAnimation("planet4", [3]);
+			Registry.player2Planet.addAnimation("planet5", [4]);
 			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 			
