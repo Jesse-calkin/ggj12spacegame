@@ -5,6 +5,7 @@ package Game.FlxStates
 	import Game.FlxStates.MenuState;
 	import Game.FlxStates.PlayState;
 	import Game.Utility.*;
+	import Game.Utility.Registry;
 	
 	public class EndGameState extends FlxState
 	{
@@ -50,13 +51,13 @@ package Game.FlxStates
 			winnerSound.play();
 			
 			var instructions:FlxText;
-			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return to Menu");
-			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
+			instructions = new FlxText(0, FlxG.height - 38, FlxG.width, "Press Space To Replay");
+			instructions.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(instructions);
 			
 			var replaytext:FlxText;
-			replaytext = new FlxText(0, FlxG.height - 22, FlxG.width, "Press R To Play Again");
-			replaytext.setFormat (null, 8, 0xFFFFFFFF, "center");
+			replaytext = new FlxText(0, FlxG.height - 22, FlxG.width, "Press esc to go to Main Menu");
+			replaytext.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(replaytext);
 			
 			var p1scoreText:FlxText;
@@ -68,10 +69,8 @@ package Game.FlxStates
 			p2scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p2score.toString());
 			p2scoreText.setFormat (null, 120, Registry.menuorange, "right");
 			add(p2scoreText);
- 
 		} // end function create
- 
- 
+		
 		override public function update():void
 		{
 			super.update(); // calls update on everything you added to the game loop
@@ -81,24 +80,23 @@ package Game.FlxStates
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
-				FlxG.switchState(new MenuState());
+				Registry.backgroundtheme.play();
+				FlxG.switchState(new PlayState());
 			}
 			
-			if (FlxG.keys.justPressed("R"))
+			if (FlxG.keys.justPressed("R") || FlxG.keys.ESCAPE)
 			{
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
-				Registry.backgroundtheme.play();
-				FlxG.switchState(new PlayState());
+				FlxG.switchState(new MenuState());
 			}
- 
 		} // end function update
- 
+		
 		public function EndGameState()
 		{
 			super();
- 
+			
 		}  // end function ControlsState
  
 	} // end class

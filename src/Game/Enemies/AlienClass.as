@@ -41,15 +41,10 @@ package Game.Enemies
 		private var _clockwiseRotation:Boolean;
 		private var _alienGun:VenomSpitter;
 		private var _newMob:Boolean;
-		private var warningImage:FlxSprite;
 		public var isActive:Boolean;
 		
 		public function AlienClass(targetPlayer:uint = 0, newMob:Boolean = false)
 		{
-			warningImage = new FlxSprite( -50, -50, ImageFiles.enemyWarningImg);
-			warningImage.alpha = 1;
-			FlxG.state.add(warningImage);
-			
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
 			_alienGun = new VenomSpitter(this);
@@ -83,8 +78,6 @@ package Game.Enemies
 			
 			if (isActive)
 			{
-				displayWarning();
-				
 				if (!_inRangeOfPlayer)
 				{
 					super.update();
@@ -104,35 +97,6 @@ package Game.Enemies
 				
 				draw();
 			}
-		}
-		
-		private function displayWarning():void
-		{
-			if ((x < 0 || x > FlxG.width) || (y < 0 || y > FlxG.height))
-			{
-				if (y < 0)
-				{
-					warningImage.y = 0 - warningImage.height * 2 / 3;
-					warningImage.x = x - warningImage.width / 3;
-				}
-				else if (y > FlxG.height)
-				{
-					warningImage.y = FlxG.height - warningImage.height / 3;
-					warningImage.x = x - warningImage.width / 3;
-				}
-				else if (x < 0)
-				{
-					warningImage.x = 0 - warningImage.width * 2 / 3;
-					warningImage.y = y - warningImage.height / 3;
-				}
-				else if (x > FlxG.width)
-				{
-					warningImage.x = FlxG.width - warningImage.width / 3;
-					warningImage.y = y + warningImage.height / 3;
-				}
-			}
-			
-			warningImage.alpha -= FlxG.elapsed / 2;
 		}
 		
 		private function rotateAroundPlanet():void
@@ -474,7 +438,6 @@ package Game.Enemies
 			{
 				_alienGun.currentBullet.reset(x, y);
 			}
-			warningImage.alpha = 1;
 		}
 		
 		private function getDistanceToPlayer():Number

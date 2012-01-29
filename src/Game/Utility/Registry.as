@@ -20,8 +20,8 @@ package Game.Utility
 		public static var bottomShieldSpawner:FlxEmitter;
 		public static var topMoveSpeedSpawner:FlxEmitter;
 		public static var bottomMoveSpeedSpawner:FlxEmitter;
-		public static var p1score:Number;
-		public static var p2score:Number;
+		public static var p1score:uint = 0;
+		public static var p2score:uint = 0;
 		public static var timer:FlxDelay;
 		public static var leftsnakeWiggle:FlxSprite;
 		public static var rightsnakeWiggle:FlxSprite;
