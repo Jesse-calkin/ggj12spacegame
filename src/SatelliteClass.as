@@ -79,7 +79,7 @@ package
 		public function Fire():void
 		{
 			_rocketLauncher.fireFromAngle(degree);
-			_rocketLauncher.currentBullet.angle = degree + 90;
+			_rocketLauncher.currentBullet.angle = degree + 90;			
 		}
 		
 	}
