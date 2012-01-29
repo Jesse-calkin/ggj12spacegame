@@ -1,10 +1,14 @@
-package  
+package Game.Enemies
 {
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
-	import Weapons.Rocket;
-	import Weapons.VenomSpitter;
-	import Powerups.Powerup;
+	import Game.FlxStates.PlayState;
+	import Game.Powerups.Powerup;
+	import Game.Weapons.Rocket;
+	import Game.Weapons.VenomSpitter;
+	import Game.Utility.ImageFiles;
+	import Game.Utility.Registry;
+	import Game.Utility.SoundFiles;
 	
 	/**
 	 * ...

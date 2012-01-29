@@ -1,4 +1,4 @@
-package Weapons 
+package Game.Weapons
 {
 	import org.flixel.FlxBasic;
 	import org.flixel.FlxEmitter;

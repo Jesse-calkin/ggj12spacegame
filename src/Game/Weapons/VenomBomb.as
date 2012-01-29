@@ -1,4 +1,4 @@
-package Weapons 
+package Game.Weapons
 {
 	import org.flixel.FlxEmitter;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
