@@ -11,6 +11,7 @@ package
 		public static var player2Planet:FlxSprite;
 		public static var player1Satellite:SatelliteClass;
 		public static var player2Satellite:SatelliteClass;
+		public static var spawnerGroup:FlxGroup;
 		public static var topPowerUpSpawner:FlxEmitter;
 		public static var bottomPowerUpSpawner:FlxEmitter;
 		public static var p1score:Number;

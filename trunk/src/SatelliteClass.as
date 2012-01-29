@@ -20,6 +20,10 @@ package
 		public var degree:Number = 0;
 		public var radian:Number = (degree / 180) * Math.PI;
 		
+		public var powerupTime:Number;
+		public var hasShield:Boolean;
+		public var shieldSprite:FlxSprite = new FlxSprite();
+		
 		public var _rocketLauncher:RocketLauncher;
 		
 		public function SatelliteClass(Player:uint, X:Number = 0, Y:Number = 0, SimpleGraphic:Class = null)
@@ -27,21 +31,28 @@ package
 			super(X, Y);
 			loadGraphic(ImageFiles.satelliteImg);
 			
-			origin.x = 0;	
+			shieldSprite.exists = false;
+			origin.x = 0;
+			powerupTime = 0;
 			radius = 100;
+			
+			shieldSprite.makeGraphic(radius, radius, 0x00000000);
 			
 			if (Player == 1)
 			{
 				xcenter = Registry.player1Planet.getMidpoint().x;
 				ycenter = Registry.player1Planet.getMidpoint().y;
+				shieldSprite.x = Registry.player1Planet.x - 45 / 2;
+				shieldSprite.y = Registry.player1Planet.y - 45 / 2;
 			}
 			else
 			{
 				xcenter = Registry.player2Planet.getMidpoint().x;
 				ycenter = Registry.player2Planet.getMidpoint().y;
+				shieldSprite.x = Registry.player2Planet.x - 45 / 2;
+				shieldSprite.y = Registry.player2Planet.y - 45 / 2;
 			}
 			
-			//angle = 270;
 			x = xcenter;
 			y = ycenter - height / 2;
 			
@@ -82,6 +93,27 @@ package
 			_rocketLauncher.currentBullet.angle = degree + 90;
 			_rocketLauncher.currentBullet.x -= 2; // correct for images
 			_rocketLauncher.currentBullet.y -= 3; // correct for images
+		}
+		
+		override public function update():void
+		{
+			if (hasShield)
+			{
+				powerupTime += FlxG.elapsed;
+				
+				shieldSprite.exists = true;
+				PlayState.drawCircle(shieldSprite, new FlxPoint(shieldSprite.width / 2, shieldSprite.height / 2), radius / 2, 0xff33ff33, 0, 0x4433ff33);
+				FlxG.state.add(shieldSprite);
+				hasShield = false;
+			}
+			
+			if (powerupTime)
+			{
+				powerupTime += FlxG.elapsed;
+				
+				shieldSprite.alpha = Math.min(powerupTime, 1);
+			}
+			
 		}
 		
 	}
