@@ -24,7 +24,7 @@ package Weapons
 			makeImageBullet(_rocketCount, Rocket, ImageFiles.rocketImg, 0, 0);
 			setBulletSpeed(_startRocketSpeed);
 			setBulletAcceleration(_rocketAcceleration.x, _rocketAcceleration.y, _maxRocketSpeed.x, _maxRocketSpeed.y);
-			setBulletBounds(FlxG.worldBounds);
+			//setBulletBounds(FlxG.worldBounds); -- useless, weapon never checks.
 			setFireRate(_rateOfFire);
 			onFireSound = new FlxSound().loadEmbedded(SoundFiles.laserFireSnd);
 		}
