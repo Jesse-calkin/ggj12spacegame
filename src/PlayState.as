@@ -4,14 +4,13 @@ package
 	import flash.display.Graphics;
 	import org.flixel.*;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
+	import Powerups.MoveSpeed;
 	import Powerups.Powerup;
 	import Powerups.Shield;
 	
 	public class PlayState extends FlxState
 	{	
 		public static var alienGroup:FlxGroup;
-		
-		//private var testCircle:FlxSprite = new FlxSprite();
 		
 		override public function create():void
 		{
@@ -52,29 +51,45 @@ package
 			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player2Satellite);
 			
-			var shieldParticleTop:Shield = new Shield();
-			var shieldParticleBottom:Shield = new Shield();
-			Registry.topPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticleTop.width / 2, -shieldParticleTop.height, 1);
-			Registry.topPowerUpSpawner.setXSpeed(0, 0);
-			Registry.topPowerUpSpawner.setYSpeed(Powerup.POWERUP_SPEED * FlxG.elapsed, Powerup.POWERUP_SPEED * FlxG.elapsed);
-			Registry.topPowerUpSpawner.setRotation(0, 0);
-			Registry.topPowerUpSpawner.lifespan = 10;
+			Registry.topShieldSpawner = powerupSpawnerSetup(true, new Shield());
+			Registry.bottomShieldSpawner = powerupSpawnerSetup(true, new Shield());
+			Registry.topMoveSpeedSpawner = powerupSpawnerSetup(true, new MoveSpeed());
+			Registry.bottomMoveSpeedSpawner = powerupSpawnerSetup(true, new MoveSpeed());
+			
+			//var shieldParticleTop:Shield = new Shield();
+			//var shieldParticleBottom:Shield = new Shield();
+			//var moveSpeedParticleTop:MoveSpeed = new MoveSpeed();
+			//var moveSpeedParticleBottom:MoveSpeed = new MoveSpeed();
+			
+			//Registry.topPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticleTop.width / 2, -shieldParticleTop.height, 2);
+			//Registry.topPowerUpSpawner.setXSpeed(0, 0);
+			//Registry.topPowerUpSpawner.setYSpeed(Powerup.POWERUP_SPEED * FlxG.elapsed, Powerup.POWERUP_SPEED * FlxG.elapsed);
+			//Registry.topPowerUpSpawner.setRotation(0, 0);
+			//Registry.topPowerUpSpawner.lifespan = 10;
 			//shieldParticleTop.exists = false;
-			Registry.topPowerUpSpawner.add(shieldParticleTop);
+			//moveSpeedParticleTop.exists = false;
+			//Registry.topPowerUpSpawner.add(shieldParticleTop);
+			//Registry.topPowerUpSpawner.add(moveSpeedParticleTop);
+			//
+			//Registry.bottomPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticleBottom.width / 2, FlxG.height, 2);
+			//Registry.bottomPowerUpSpawner.setXSpeed(0, 0);
+			//Registry.bottomPowerUpSpawner.setYSpeed(-Powerup.POWERUP_SPEED * FlxG.elapsed, -Powerup.POWERUP_SPEED * FlxG.elapsed);
+			//Registry.bottomPowerUpSpawner.setRotation(0, 0);
+			//Registry.bottomPowerUpSpawner.lifespan = 10;
+			//shieldParticleBottom.exists = false;
+			//moveSpeedParticleBottom.exists = false;
+			//Registry.bottomPowerUpSpawner.add(shieldParticleBottom);
+			//Registry.bottomPowerUpSpawner.add(moveSpeedParticleBottom);
 			
-			Registry.bottomPowerUpSpawner = new FlxEmitter(FlxG.width / 2 - shieldParticleBottom.width / 2, FlxG.height, 1);
-			Registry.bottomPowerUpSpawner.setXSpeed(0, 0);
-			Registry.bottomPowerUpSpawner.setYSpeed(-Powerup.POWERUP_SPEED * FlxG.elapsed, -Powerup.POWERUP_SPEED * FlxG.elapsed);
-			Registry.bottomPowerUpSpawner.setRotation(0, 0);
-			Registry.bottomPowerUpSpawner.lifespan = 10;
-			shieldParticleBottom.exists = false;
-			Registry.bottomPowerUpSpawner.add(shieldParticleBottom);
-			
-			add(Registry.topPowerUpSpawner);
-			add(Registry.bottomPowerUpSpawner);
-			Registry.spawnerGroup = new FlxGroup(2);
-			Registry.spawnerGroup.add(Registry.topPowerUpSpawner);
-			Registry.spawnerGroup.add(Registry.bottomPowerUpSpawner);			
+			add(Registry.topShieldSpawner);
+			add(Registry.bottomShieldSpawner);
+			add(Registry.topMoveSpeedSpawner);
+			add(Registry.bottomMoveSpeedSpawner);
+			Registry.spawnerGroup = new FlxGroup(4);
+			Registry.spawnerGroup.add(Registry.topShieldSpawner);
+			Registry.spawnerGroup.add(Registry.bottomShieldSpawner);			
+			Registry.spawnerGroup.add(Registry.topMoveSpeedSpawner);
+			Registry.spawnerGroup.add(Registry.topMoveSpeedSpawner);
 			//Registry.topPowerUpSpawner.start();
 			//Registry.bottomPowerUpSpawner.start();
 			
@@ -99,6 +114,29 @@ package
 			p2scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p2score.toString());
 			p2scoreText.setFormat (null, 32, 0xFF6600, "right", 0xFFFFFFFF);
 			add(p2scoreText);
+		}
+		
+		private function powerupSpawnerSetup(top:Boolean, particle:FlxParticle):FlxEmitter
+		{
+			var spawner:FlxEmitter;
+			if (top)
+			{
+				spawner = new FlxEmitter(FlxG.width / 2 - particle.width / 2, - particle.height, 1);
+			}
+			else
+			{
+				spawner = new FlxEmitter(FlxG.width / 2 - particle.width / 2, FlxG.height, 1);
+			}
+
+			spawner.setXSpeed(0, 0);
+			var powerupSpeed:Number = (top ? Powerup.POWERUP_SPEED : -Powerup.POWERUP_SPEED) * FlxG.elapsed;
+			spawner.setYSpeed(powerupSpeed, powerupSpeed);
+			spawner.setRotation(0, 0);
+			spawner.lifespan = 10;
+			particle.exists = false;
+			
+			spawner.add(particle);
+			return spawner;
 		}
 		
 		override public function update():void

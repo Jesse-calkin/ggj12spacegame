@@ -17,7 +17,8 @@ package
 		[Embed(source = "../data/gfx/newgame-sel.png")] public static var newgameSelImg:Class;
 		[Embed(source = "../data/gfx/Space-Snakes-Title.png")] public static var spacesnakesTitleImg:Class;
 		[Embed(source = "../data/gfx/Smoke.png")] public static var smokeImg:Class;
-		[Embed(source = "../data/gfx/Shield.png")] public static var shieldPowerupImg:Class;
+		[Embed(source = "../data/gfx/S.png")] public static var shieldPowerupImg:Class;
+		[Embed(source = "../data/gfx/M.png")] public static var moveSpeedPowerupImg:Class;
 		[Embed(source = "../data/gfx/newEnemyWarning.png")] public static var enemyWarningImg:Class;
     }
 }

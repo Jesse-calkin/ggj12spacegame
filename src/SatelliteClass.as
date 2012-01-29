@@ -3,6 +3,7 @@ package
 	import org.flixel.*;
 	
 	import Weapons.RocketLauncher;
+	import Powerups.MoveSpeed;
 	
 	/**
 	 * ...
@@ -13,6 +14,8 @@ package
 		public static const CLOCKWISE:String = "clockwise";
 		public static const COUNTER_CLOCKWISE:String = "counterClockwise";
 		
+		private var _angularAcceleration:Number;
+		
 		public var radius:Number;
 		public var xcenter:Number;
 		public var ycenter:Number;
@@ -20,6 +23,7 @@ package
 		
 		public var powerupTime:Number;
 		public var hasShield:Boolean;
+		public var hasMoveSpeed:Boolean;
 		public var shieldSprite:FlxSprite = new FlxSprite();
 		
 		public var _rocketLauncher:RocketLauncher;
@@ -33,6 +37,7 @@ package
 			origin.x = 0;
 			powerupTime = 0;
 			radius = 100;
+			_angularAcceleration = 300;
 			
 			shieldSprite.makeGraphic(radius, radius, 0x00000000);
 			
@@ -60,7 +65,9 @@ package
 		
 		public function rotate(direction:String):void
 		{
-			angularAcceleration = (direction == CLOCKWISE) ? 300 : -300;
+			angularAcceleration = (direction == CLOCKWISE) ? _angularAcceleration : -_angularAcceleration;
+			
+			idle();
 		}
 		
 		public function idle():void
@@ -101,11 +108,30 @@ package
 				hasShield = false;
 			}
 			
+			if (hasMoveSpeed)
+			{
+				powerupTime += FlxG.elapsed;
+				
+				_angularAcceleration = 400;
+				maxAngular = 200;
+				//hasMoveSpeed = false;
+			}
+			
 			if (powerupTime)
 			{
 				powerupTime += FlxG.elapsed;
 				
-				shieldSprite.alpha = Math.min(powerupTime, 1);
+				if (hasMoveSpeed && powerupTime > MoveSpeed.TIME)
+				{
+					_angularAcceleration = 300;
+					maxAngular = 100;
+					powerupTime = 0;
+				}
+				
+				if (shieldSprite.exists)
+				{
+					shieldSprite.alpha = Math.min(powerupTime, 1);
+				}
 			}
 			
 		}
