@@ -69,6 +69,13 @@ package
 			//FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, Registry.player2Planet, PlanetHit);
 			//FlxG.overlap(Registry.player2Satellite._rocketLauncher.group, Registry.player1Planet, PlanetHit);
 			
+			isGameOver();
+			
+			if (isGameOver())
+			{
+				FlxG.switchState(new EndGameState());
+			}
+			
 			super.update();
 		}	
 		
