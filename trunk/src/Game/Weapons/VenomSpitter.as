@@ -1,12 +1,14 @@
-package Weapons 
+package Game.Weapons
 {
 	import org.flixel.FlxPoint;
 	import org.flixel.FlxRect;
 	import org.flixel.FlxSound;
 	import org.flixel.FlxG;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
-	import ImageFiles;
-	import AlienClass;
+	import Game.Enemies.AlienClass;
+	import Game.Utility.ImageFiles;
+	import Game.Utility.SoundFiles;
+	
 	
 	/**
 	 * ...

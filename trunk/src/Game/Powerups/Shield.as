@@ -1,7 +1,8 @@
-package Powerups 
+package Game.Powerups 
 {
-	
 	import org.flixel.FlxG;
+	import Game.Player.SatelliteClass;
+	import Game.Utility.ImageFiles;
 	
 	/**
 	 * ...

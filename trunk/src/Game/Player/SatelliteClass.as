@@ -1,9 +1,11 @@
-package  
+package Game.Player
 {
 	import org.flixel.*;
-	
-	import Weapons.RocketLauncher;
-	import Powerups.MoveSpeed;
+	import Game.FlxStates.PlayState;
+	import Game.Powerups.MoveSpeed;
+	import Game.Weapons.RocketLauncher;
+	import Game.Utility.ImageFiles;
+	import Game.Utility.Registry;
 	
 	/**
 	 * ...

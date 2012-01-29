@@ -1,7 +1,8 @@
-package Powerups 
+package Game.Powerups 
 {
 	import org.flixel.FlxParticle;
 	import org.flixel.FlxSprite;
+	import Game.Player.SatelliteClass;
 	
 	/**
 	 * ...

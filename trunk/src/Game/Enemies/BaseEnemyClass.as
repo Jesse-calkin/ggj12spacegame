@@ -1,4 +1,4 @@
-package  
+package Game.Enemies
 {
 	import org.flixel.*;
 	/**
