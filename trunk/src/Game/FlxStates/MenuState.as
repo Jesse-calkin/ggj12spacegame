@@ -21,9 +21,6 @@ package Game.FlxStates
 		
 		override public function create():void
 		{
-			Registry.p1score = 0;
-			Registry.p2score = 0;
-
 			Registry.backgroundtheme = new FlxSound();
 			Registry.backgroundtheme.loadEmbedded(SoundFiles.themeSnd, true)
 			Registry.backgroundtheme.volume = .5;
@@ -57,8 +54,8 @@ package Game.FlxStates
 			Registry.rightsnakeWiggle.play("RightWiggle");
 			
 			var instructions:FlxText;
-			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Select");
-			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
+			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Use Arrows and Space To Select");
+			instructions.setFormat (null, 12, 0xFFFFFFFF, "center");
 			add(instructions);
 			
 			advisoryText = new FlxText(0, 140, FlxG.width, "(2 Player Game)");
