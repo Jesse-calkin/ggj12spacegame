@@ -45,8 +45,6 @@ package Weapons
 				
 				_propulsionEmitter.add(particle);
 			}
-			
-			Registry.MetaEmitterGroup.add(_propulsionEmitter);
 		}
 		
 		override public function fireFromAngle(fromX:int, fromY:int, fireAngle:int, speed:int):void 
