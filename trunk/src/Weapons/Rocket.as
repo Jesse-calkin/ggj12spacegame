@@ -79,10 +79,10 @@ package Weapons
 			_propulsionEmitter.setXSpeed(0, 0);
 			_propulsionEmitter.setYSpeed(0, 0);
 			
-			var particle:FlxParticle;
+			
 			for(var i:int = 0; i < _propulsionEmitter.maxSize; i++)
 			{
-				particle = new FlxParticle();
+				var particle:FlxParticle = new FlxParticle();//Registry.ParticlePool.recycle(FlxParticle) as FlxParticle;
 				
 				var color:uint;
 				if (i % 2 == 0)
@@ -102,6 +102,7 @@ package Weapons
 				
 				_propulsionEmitter.add(particle);
 			}
+			//FlxG.state.add(_propulsionEmitter);
 			FlxG.state.add(_propulsionEmitter);
 		}
 		

@@ -174,6 +174,7 @@ package
 			if (Registry.player1Planet.alive && Registry.player2Planet.alive)
 			{
 				_alienGun.fireAtTarget(new FlxSprite(getPlanetXPosition(), getPlanetYPosition()));
+				_alienGun.currentBullet.angle = angle;
 				_alienGun.currentBullet.revive();
 			}
 		}
