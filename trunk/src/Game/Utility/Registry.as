@@ -27,6 +27,8 @@ package Game.Utility
 		public static var rightsnakeWiggle:FlxSprite;
 		public static var backgroundtheme:FlxSound;
 		public static var endgameTheme:FlxSound;
+		public static var powerupText:FlxText;
+
 		public static const menuRed:uint = 0xDC1A1A;
 		public static const menulightgreen:uint = 0x1A9B05;
 		public static const menudarkgreen:uint = 0x34DC1A;

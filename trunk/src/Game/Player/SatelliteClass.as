@@ -125,10 +125,19 @@ package Game.Player
 			
 			if (powerupTime)
 			{
+				if (powerupTime > 2)
+				{
+					Registry.powerupText.visible = false;
+					FlxG.state.remove(Registry.powerupText);
+				}
+				
 				powerupTime += FlxG.elapsed;
 				
 				if (hasMoveSpeed && powerupTime > MoveSpeed.TIME)
 				{
+					// Hack to get rid of double increment of timer
+					powerupTime -= FlxG.elapsed;
+					
 					_angularAcceleration = 300;
 					angularDrag = 300;
 					maxAngular = 100;
