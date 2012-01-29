@@ -9,8 +9,10 @@ package
 		
 		override public function create():void
 		{
-			music = new FlxSound().loadEmbedded(SoundFiles.gameOverSnd, true);
-			music.play();
+			Registry.endgameTheme = new FlxSound();
+			Registry.endgameTheme.loadEmbedded(SoundFiles.gameOverSnd, true)
+			Registry.endgameTheme.volume = 1;
+			Registry.endgameTheme.play();
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
@@ -75,6 +77,7 @@ package
 				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
+				Registry.endgameTheme.stop();
 				FlxG.switchState(new MenuState());
 			}
 			
@@ -83,6 +86,8 @@ package
 				music.stop();
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
+				Registry.endgameTheme.stop();
+				Registry.backgroundtheme.play();
 				FlxG.switchState(new PlayState());
 			}
  
