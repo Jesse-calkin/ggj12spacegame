@@ -1,6 +1,7 @@
 package Game.Enemies
 {
 	import org.flixel.*;
+	
 	/**
 	 * ...
 	 * @author Lachlan McInnes
