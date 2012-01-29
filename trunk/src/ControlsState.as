@@ -47,17 +47,17 @@ package
 
 			var player2left:FlxText;
 			player2left = new FlxText(0, 265, FlxG.width, "Left Arrow: Rotate Left");
-			player2left.setFormat (null, 16, 0x00CCFF, "center");
+			player2left.setFormat (null, 16, 0xFF6600, "center");
 			add(player2left);
 			
 			var player2right:FlxText;
 			player2right = new FlxText(0, 285, FlxG.width, "Right Arrow: Rotate Right");
-			player2right.setFormat (null, 16, 0x00CCFF, "center");
+			player2right.setFormat (null, 16, 0xFF6600, "center");
 			add(player2right);
 			
 			var player2up:FlxText;
 			player2up = new FlxText(0, 305, FlxG.width, "Up Arrow: Fire");
-			player2up.setFormat (null, 16, 0x00CCFF, "center");
+			player2up.setFormat (null, 16, 0xFF6600, "center");
 			add(player2up);
 			
 

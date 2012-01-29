@@ -8,7 +8,7 @@ package
 		
 		override public function create():void
 		{
-			FlxG.stream("../data/sounds/music/game over.mp3", 0.5, true);
+			FlxG.stream("../data/sounds/music/game over.mp3", 1, true);
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
