@@ -80,7 +80,7 @@ package
 		{
 			super.update(); // calls update on everything you added to the game loop
  
-			if (FlxG.keys.justPressed("SPACE"))
+			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.justPressed("ENTER"))
 			{
 				var temp:FlxSound;
 				temp = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
