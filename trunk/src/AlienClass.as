@@ -430,7 +430,7 @@ package
 				velocity.y *= -1;
 			}
 			
-			angle = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(getPlanetXPosition()));
+			angle = FlxU.getAngle(new FlxPoint(x, y), new FlxPoint(getPlanetXPosition(), getPlanetYPosition()));
 		}
 		
 		public function activate(targetPlayer:uint, newMob:Boolean = false):void
