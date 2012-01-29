@@ -13,8 +13,10 @@ package
 		public static var player1Satellite:SatelliteClass;
 		public static var player2Satellite:SatelliteClass;
 		public static var spawnerGroup:FlxGroup;
-		public static var topPowerUpSpawner:FlxEmitter;
-		public static var bottomPowerUpSpawner:FlxEmitter;
+		public static var topShieldSpawner:FlxEmitter;
+		public static var bottomShieldSpawner:FlxEmitter;
+		public static var topMoveSpeedSpawner:FlxEmitter;
+		public static var bottomMoveSpeedSpawner:FlxEmitter;
 		public static var p1score:Number;
 		public static var p2score:Number;
 		public static var timer:FlxDelay;

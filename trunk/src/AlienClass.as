@@ -306,11 +306,33 @@ package
 					
 					if (FlxG.random() < .5)
 					{
-						Registry.topPowerUpSpawner.emitParticle();
+						switch (int(FlxG.random() * 2))
+						{
+							case 0:
+								Registry.topShieldSpawner.emitParticle();
+								break;
+							case 1:
+								Registry.topMoveSpeedSpawner.emitParticle();
+								break;
+							default:
+								trace("Bad spawner number.");
+								break;
+						}
 					}
 					else
 					{
-						Registry.bottomPowerUpSpawner.emitParticle();
+						switch (int(FlxG.random() * 2))
+						{
+							case 0:
+								Registry.bottomShieldSpawner.emitParticle();
+								break;
+							case 1:
+								Registry.bottomMoveSpeedSpawner.emitParticle();
+								break;
+							default:
+								trace("Bad spawner number.");
+								break;
+						}
 					} 
 				}
 				
