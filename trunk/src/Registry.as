@@ -2,6 +2,7 @@ package
 {
         import flash.display.Stage;
         import org.flixel.*;
+		import org.flixel.plugin.photonstorm.FlxDelay;
 
 	public class Registry
 	{
@@ -16,6 +17,10 @@ package
 		public static var bottomPowerUpSpawner:FlxEmitter;
 		public static var p1score:Number;
 		public static var p2score:Number;
+		public static var timer:FlxDelay;
+		public static var leftsnakeWiggle:FlxSprite;
+		public static var rightsnakeWiggle:FlxSprite;
+				
 		
 		public function Registry()
 		{

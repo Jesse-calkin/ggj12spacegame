@@ -124,9 +124,9 @@ package
 			
 			if (isGameOver())
 			{
-				FlxG.switchState(new EndGameState());
-			}
-			
+				FlxG.flash(0xFEAB04, 0.75,explodePlanet);
+			}		
+		
 			super.update();
 		}	
 		
@@ -228,6 +228,11 @@ package
 			
 			Sprite.pixels.draw(FlxG.flashGfxSprite);
 			Sprite.dirty = true;
+		}
+		
+		public function explodePlanet():void
+		{
+			FlxG.switchState(new EndGameState())
 		}
 		
 	}
