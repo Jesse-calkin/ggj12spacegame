@@ -109,27 +109,27 @@ package
 			{
 				if (y < 0)
 				{
-					warningImage.y = 0 - warningImage.height / 2;
-					warningImage.x = x - warningImage.width / 2;
+					warningImage.y = 0 - warningImage.height * 2 / 3;
+					warningImage.x = x - warningImage.width / 3;
 				}
 				else if (y > FlxG.height)
 				{
-					warningImage.y = FlxG.height - warningImage.height / 2;
-					warningImage.x = x - warningImage.width / 2;
+					warningImage.y = FlxG.height - warningImage.height / 3;
+					warningImage.x = x - warningImage.width / 3;
 				}
 				else if (x < 0)
 				{
-					warningImage.x = 0 - warningImage.width / 2;
-					warningImage.y = y - warningImage.height / 2;
+					warningImage.x = 0 - warningImage.width * 2 / 3;
+					warningImage.y = y - warningImage.height / 3;
 				}
 				else if (x > FlxG.width)
 				{
-					warningImage.x = FlxG.width - warningImage.width / 2;
-					warningImage.y = y + warningImage.height / 2;
+					warningImage.x = FlxG.width - warningImage.width / 3;
+					warningImage.y = y + warningImage.height / 3;
 				}
 			}
 			
-			warningImage.alpha -= FlxG.elapsed / 3;
+			warningImage.alpha -= FlxG.elapsed / 2;
 		}
 		
 		private function rotateAroundPlanet():void

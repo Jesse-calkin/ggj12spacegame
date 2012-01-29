@@ -35,8 +35,6 @@ package
 				add(player1Win);
 				Registry.p1score += 1;
 			}
-
-
 			
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Return to Menu");

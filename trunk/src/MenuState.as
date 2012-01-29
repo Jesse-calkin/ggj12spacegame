@@ -1,8 +1,7 @@
 package
 {
 	import org.flixel.*;
-
- 
+	
 	public class MenuState extends FlxState
 	{
 		private var newgamehighlighted:Boolean = true;
@@ -14,8 +13,7 @@ package
 		private var controls:FlxSprite;
 		private var credits:FlxSprite;
 		private var tempSound:FlxSound;
-
-				
+		
 		override public function create():void
 		{
 			Registry.p1score = 0;
@@ -24,7 +22,7 @@ package
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);
 			add(background);
-
+			
 			newgame = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
 			add(newgame);
 			controls = new FlxSprite(160, 230, ImageFiles.controlsImg);
@@ -48,20 +46,17 @@ package
 			add(Registry.rightsnakeWiggle);
 			Registry.rightsnakeWiggle.play("RightWiggle");
 			
-						
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Select");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
 			
-
- 
 		} // end function create
-
+		
 		override public function update():void
 		{
 			getInput();
-
+			
 			super.update(); // calls update on everything you added to the game loop 
 		} // end function update
  		
@@ -109,19 +104,19 @@ package
 				FlxG.fade(0xff000000, 1, onFade);
 			}
 		}
-
+		
 		private function onFade():void
         {
 			switch(menuCounter)
 			{
-				case 1:
-					FlxG.switchState(new PlayState());
-					break;
-				case 2:
-					FlxG.switchState(new ControlsState());
-					break
-				case 3:
-					FlxG.switchState(new CreditsState());
+			case 1:
+				FlxG.switchState(new PlayState());
+				break;
+			case 2:
+				FlxG.switchState(new ControlsState());
+				break
+			case 3:
+				FlxG.switchState(new CreditsState());
 			}		
         }
 		
@@ -129,21 +124,21 @@ package
 		{
 			switch(menuCounter)
 			{
-				case 1:		
-					newgame.loadGraphic(ImageFiles.newgameSelImg)
-					controls.loadGraphic(ImageFiles.controlsImg)
-					credits.loadGraphic(ImageFiles.creditsImg)
-					break;
-				case 2:	
-					newgame.loadGraphic(ImageFiles.newgameImg)
-					controls.loadGraphic(ImageFiles.controlsSelImg)
-					credits.loadGraphic(ImageFiles.creditsImg)
-					break;
-				case 3:
-					newgame.loadGraphic(ImageFiles.newgameImg)
-					controls.loadGraphic(ImageFiles.controlsImg)
-					credits.loadGraphic(ImageFiles.creditsSelImg)
-					break;
+			case 1:		
+				newgame.loadGraphic(ImageFiles.newgameSelImg)
+				controls.loadGraphic(ImageFiles.controlsImg)
+				credits.loadGraphic(ImageFiles.creditsImg)
+				break;
+			case 2:	
+				newgame.loadGraphic(ImageFiles.newgameImg)
+				controls.loadGraphic(ImageFiles.controlsSelImg)
+				credits.loadGraphic(ImageFiles.creditsImg)
+				break;
+			case 3:
+				newgame.loadGraphic(ImageFiles.newgameImg)
+				controls.loadGraphic(ImageFiles.controlsImg)
+				credits.loadGraphic(ImageFiles.creditsSelImg)
+				break;
 			}
 		}
 		
