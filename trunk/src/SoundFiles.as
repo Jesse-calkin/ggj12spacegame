@@ -4,6 +4,7 @@ package
 	{
 		[Embed(source = "../data/sounds/alien/nomnomnom.mp3")]public static var alienSnd:Class
 		[Embed(source = "../data/sounds/alien/alien_death.mp3")]public static var alienDeathSnd:Class
+		[Embed(source = "../data/sounds/alien/alien_venom_bomb.mp3")]public static var alienVenomSnd:Class
 		[Embed(source = "../data/sounds/asteroid/asteroid crash.mp3")]public static var asteroidCrashSnd:Class
 		[Embed(source = "../data/sounds/asteroid/Asteroid_explosion.mp3")]public static var asteroidExplosionSnd:Class
 		[Embed(source = "../data/sounds/music/Theme.mp3")]public static var themeSnd:Class

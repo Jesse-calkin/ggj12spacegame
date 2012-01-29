@@ -26,7 +26,7 @@ package Weapons
 			setBulletSpeed(_startSpeed);
 			setBulletAcceleration(_acceleration.x, _acceleration.y, _maxSpeed.x, _maxSpeed.y);
 			setBulletBounds(FlxG.worldBounds);
-			onFireSound = new FlxSound().loadEmbedded(SoundFiles.laserFireSnd);
+			onFireSound = new FlxSound().loadEmbedded(SoundFiles.alienVenomSnd);
 		}
 	}
 }
