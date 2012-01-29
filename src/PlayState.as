@@ -208,7 +208,7 @@ package
 			
 			if (Registry.player2Satellite.angularAcceleration == 0)
 			{
-				Registry.player1Satellite.idle();
+				Registry.player2Satellite.idle();
 			}
 			
 		}
