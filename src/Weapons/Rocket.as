@@ -36,7 +36,7 @@ package Weapons
 		
 		private function initExplosionParticleSystem():void
 		{
-			_explosionEmitter = new FlxEmitter(0, 0, 20);
+			_explosionEmitter = new FlxEmitter(0, 0, 15);
 			_explosionEmitter.visible = false;
 			
 			var particle:FlxParticle
