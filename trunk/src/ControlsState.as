@@ -1,5 +1,10 @@
 package
 {
+	/**
+	 * ...
+	 * @author Brandon Davis
+	 */
+		
 	import org.flixel.*;
  
 	public class ControlsState extends FlxState
