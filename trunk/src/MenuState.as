@@ -16,6 +16,8 @@ package
 				
 		override public function create():void
 		{
+			Registry.p1score = 0;
+			Registry.p2score = 0;
 			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.spacesnakesTitleImg);

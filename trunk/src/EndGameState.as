@@ -24,6 +24,7 @@ package
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
 				player2Win.setFormat (null, 64, 0xFF6600, "center");
 				add(player2Win);
+				Registry.p2score += 1;
 			}
 			
 			else if (!Registry.player2Planet.alive)
@@ -32,6 +33,7 @@ package
 				player1Win = new FlxText(0, 150, FlxG.width, "Blue Player Wins!!!");
 				player1Win.setFormat (null, 64, 0x00CCFF, "center");
 				add(player1Win);
+				Registry.p1score += 1;
 			}
 
 
@@ -45,6 +47,16 @@ package
 			replaytext = new FlxText(0, FlxG.height - 22, FlxG.width, "Press R To Play Again");
 			replaytext.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(replaytext);
+			
+			var p1scoreText:FlxText;
+			p1scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p1score.toString());
+			p1scoreText.setFormat (null, 32, 0x00CCFF, "left");
+			add(p1scoreText);
+			
+			var p2scoreText:FlxText;
+			p2scoreText = new FlxText(0, FlxG.height - 40, FlxG.width, Registry.p2score.toString());
+			p2scoreText.setFormat (null, 32, 0xFF6600, "right");
+			add(p2scoreText);
  
 		} // end function create
  
