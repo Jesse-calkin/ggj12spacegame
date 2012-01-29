@@ -18,7 +18,6 @@ package Powerups
 		{
 			super();
 			loadGraphic(SimpleGraphic);
-			//super(X, Y, SimpleGraphic);
 		}
 		
 		public function apply(who:SatelliteClass):void

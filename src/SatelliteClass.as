@@ -38,8 +38,10 @@ package
 			
 			shieldSprite.makeGraphic(radius, radius, 0x00000000);
 			
+			var parentClass:FlxSprite;
 			if (Player == 1)
 			{
+				parentClass = Registry.player1Planet;
 				xcenter = Registry.player1Planet.getMidpoint().x;
 				ycenter = Registry.player1Planet.getMidpoint().y;
 				shieldSprite.x = Registry.player1Planet.x - 45 / 2;
@@ -47,6 +49,7 @@ package
 			}
 			else
 			{
+				parentClass = Registry.player2Planet;
 				xcenter = Registry.player2Planet.getMidpoint().x;
 				ycenter = Registry.player2Planet.getMidpoint().y;
 				shieldSprite.x = Registry.player2Planet.x - 45 / 2;
@@ -57,6 +60,7 @@ package
 			y = ycenter - height / 2;
 			
 			_rocketLauncher = new RocketLauncher(this);
+			_rocketLauncher.setParent(parentClass, "x", "y", parentClass.origin.x + Math.cos(radian) * width, parentClass.origin.y + Math.sin(radian) * width);
 			FlxG.state.add(_rocketLauncher.group);
 		}
 		
@@ -70,7 +74,7 @@ package
 			//var pixel:FlxSprite = new FlxSprite(xcenter + Math.cos(radian) * (radius / 2 + 5), ycenter + Math.sin(radian) * (radius / 2 + 5)).makeGraphic(1, 1);
 			//FlxG.state.add(pixel);
 			
-			var parentClass:FlxSprite
+			var parentClass:FlxSprite;
 			if (this == Registry.player1Satellite)
 			{
 				parentClass = Registry.player1Planet;

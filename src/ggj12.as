@@ -8,7 +8,7 @@ package
 	{
 		public function ggj12()
 		{
-			super(800, 400, MenuState, 1); //Create a new FlxGame object at 800 x 400, then load PlayState
+			super(800, 400, MenuState, 1, 60, 60); //Create a new FlxGame object at 800 x 400, then load PlayState
 		}
 	}
 }
