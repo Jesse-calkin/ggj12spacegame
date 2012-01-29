@@ -75,7 +75,7 @@ package Game.FlxStates
 		{
 			super.update(); // calls update on everything you added to the game loop
  
-			if (FlxG.keys.justPressed("SPACE") || FlxG.keys.justPressed("ENTER"))
+			if (FlxG.keys.justPressed("SPACE"))
 			{
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
@@ -84,8 +84,10 @@ package Game.FlxStates
 				FlxG.switchState(new PlayState());
 			}
 			
-			if (FlxG.keys.justPressed("R") || FlxG.keys.ESCAPE)
+			if (FlxG.keys.justPressed("ESCAPE"))
 			{
+				Registry.p1score = 0;
+				Registry.p2score = 0;
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
 				Registry.endgameTheme.stop();
