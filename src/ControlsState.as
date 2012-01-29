@@ -17,7 +17,7 @@ package
 			
 			var title:FlxText;
 			title = new FlxText(0, 8, FlxG.width, "Controls");
-			title.setFormat (null, 32, 0x00FF00, "center");
+			title.setFormat (null, 32, 0x1A9B05, "center");
 			add(title);
 			
 			var p1controltitle:FlxText;
