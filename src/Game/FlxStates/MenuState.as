@@ -111,8 +111,8 @@ package Game.FlxStates
 			{	
 				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
 				tempSound.play();
-				FlxG.flash(0xffffffff, 0.75);
-				FlxG.fade(0xff000000, 1, onFade);
+				//FlxG.flash(0xffffffff, 0.75);
+				FlxG.fade(0xff000000, .5, onFade);
 			}
 		}
 		
