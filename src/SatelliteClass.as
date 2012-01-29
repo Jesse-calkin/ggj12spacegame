@@ -16,7 +16,7 @@ package
 		public var speed:Number = 1;
 		public var xcenter:Number;
 		public var ycenter:Number;
-		public var degree:Number = 270;
+		public var degree:Number = 180;
 		public var radian:Number = (degree / 180) * Math.PI;
 		
 		public var _rocketLauncher:RocketLauncher;
@@ -67,7 +67,7 @@ package
 			degree += speed;
 			degree %= 360;
 			radian = (degree / 180) * Math.PI;
-			angle = degree;
+			angle = degree +90;
 			
 			x = xcenter + Math.cos(radian) * radius / 2;
 			y = ycenter + Math.sin(radian) * radius / 2;
