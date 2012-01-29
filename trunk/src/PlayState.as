@@ -15,6 +15,7 @@ package
 		
 		override public function create():void
 		{
+			Registry.ParticlePool = new FlxGroup();
 			FlxG.bgColor = 0xffaaaaaa;
 			
 			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
@@ -46,14 +47,10 @@ package
 			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 			
-			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
-			Registry.player1Satellite.maxAngular = 100;
-			Registry.player1Satellite.angularDrag = 300;
+			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player1Satellite);
 			
-			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
-			Registry.player2Satellite.maxAngular = 100;
-			Registry.player2Satellite.angularDrag = 300;
+			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player2Satellite);
 			
 			var shieldParticleTop:Shield = new Shield();
@@ -89,6 +86,7 @@ package
 			add(Registry.player2Satellite._rocketLauncher.group);
 			
 			alienGroup = new FlxGroup(100);
+			//Registry.AlienPool = new FlxGroup();
 			alienGroup.add(new AlienClass(1));
 			alienGroup.add(new AlienClass(2));
 			add(alienGroup);
@@ -106,13 +104,13 @@ package
 		
 		override public function update():void
 		{
-			Registry.player1Satellite.velocity.x = 0;
+			/*Registry.player1Satellite.velocity.x = 0;
 			Registry.player1Satellite.velocity.y = 0;
-			Registry.player1Satellite.angularAcceleration = 0;
+			Registry.player1Satellite.angularVelocity = 0;
 			
 			Registry.player2Satellite.velocity.x = 0;
 			Registry.player2Satellite.velocity.y = 0;
-			Registry.player2Satellite.angularAcceleration = 0;
+			Registry.player2Satellite.angularVelocity = 0;*/
 			
 			getInput();
 			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
@@ -124,9 +122,9 @@ package
 			
 			if (isGameOver())
 			{
-				FlxG.flash(0xFEAB04, 0.75,explodePlanet);
-			}		
-		
+				FlxG.switchState(new EndGameState());
+			}
+			
 			super.update();
 		}	
 		
@@ -152,27 +150,16 @@ package
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if(FlxG.keys.justPressed("W"))
-			//if (FlxG.keys.W)
+			if (FlxG.keys.W)
 			{
 				Registry.player1Satellite.Fire();
 			}
 			
-			if(FlxG.keys.justPressed("UP") || FlxG.keys.justPressed("NUMPADEIGHT"))
-			//if (FlxG.keys.UP || FlxG.keys.NUMPADEIGHT)
+			if (FlxG.keys.UP || FlxG.keys.NUMPADEIGHT)
 			{
 				Registry.player2Satellite.Fire();
 			}
 			
-			if (Registry.player1Satellite.angularAcceleration == 0)
-			{
-				Registry.player1Satellite.idle();
-			}
-			
-			if (Registry.player2Satellite.angularAcceleration == 0)
-			{
-				Registry.player2Satellite.idle();
-			}
 		}
 		
 		public function isGameOver():Boolean
@@ -239,11 +226,6 @@ package
 			
 			Sprite.pixels.draw(FlxG.flashGfxSprite);
 			Sprite.dirty = true;
-		}
-		
-		public function explodePlanet():void
-		{
-			FlxG.switchState(new EndGameState())
 		}
 		
 	}
