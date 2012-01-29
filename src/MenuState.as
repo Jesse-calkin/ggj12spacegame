@@ -8,6 +8,7 @@ package
 		private var controlshighlighted:Boolean = false;
 		private var creditshighlighted:Boolean = false;
 		private var menuCounter:int = 1;
+		private var advisoryText:FlxText;
 		
 		private var newgame:FlxSprite;
 		private var controls:FlxSprite;
@@ -55,6 +56,10 @@ package
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Select");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
+			
+			advisoryText = new FlxText(0, 140, FlxG.width, "(2 Player Game)");
+			advisoryText.setFormat(null, 20, 0xffffff, "center");
+			add(advisoryText);
 			
 		} // end function create
 		
