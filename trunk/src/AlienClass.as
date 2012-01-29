@@ -4,6 +4,8 @@ package
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import Weapons.Rocket;
 	import Weapons.VenomSpitter;
+	import Powerups.Powerup;
+	
 	/**
 	 * ...
 	 * @author Lachlan McInnes
@@ -239,6 +241,22 @@ package
 			
 			if (health <= 0)
 			{
+				if (--Powerup.alienKillGoal <= 0)
+				{
+					Powerup.powerupsSpawned++;
+					Powerup.alienKillGoal = FlxG.random() * 6 + 7 + Powerup.powerupsSpawned;
+					trace(Powerup.alienKillGoal);
+					
+					if (FlxG.random() < .5)
+					{
+						Registry.topPowerUpSpawner.emitParticle();
+					}
+					else
+					{
+						Registry.bottomPowerUpSpawner.emitParticle();
+					} 
+				}
+				
 				//spawn aliens on enemy
 				if (FlxG.random() > ((100 - _OnDeathExtraSpawnPercent) / 100))
 				{

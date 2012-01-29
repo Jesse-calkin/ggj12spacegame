@@ -17,7 +17,11 @@ package
 		{
 			FlxG.bgColor = 0xffaaaaaa;
 			
-			FlxG.stream("../data/sounds/music/Theme.mp3",0.5,true);
+			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
+			
+			Powerup.powerupsSpawned = 0;
+			Powerup.alienKillGoal = FlxG.random() * 6 + 7;
+			trace(Powerup.alienKillGoal);
 			
 			var background:FlxSprite = new FlxSprite(0, 0, ImageFiles.level1backgroundImg);
 			add(background);
@@ -51,8 +55,8 @@ package
 			
 			add(Registry.topPowerUpSpawner);
 			add(Registry.bottomPowerUpSpawner);
-			Registry.topPowerUpSpawner.start();
-			Registry.bottomPowerUpSpawner.start();
+			//Registry.topPowerUpSpawner.start();
+			//Registry.bottomPowerUpSpawner.start();
 			
 			//testCircle = new FlxSprite();
 			//testCircle.makeGraphic(Registry.player1Satellite.radius, Registry.player1Satellite.radius, 0x00000000);
