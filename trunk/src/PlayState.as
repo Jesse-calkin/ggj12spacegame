@@ -9,7 +9,7 @@ package
 	{	
 		public static var alienGroup:FlxGroup;	
 		
-		private var testCircle:FlxSprite = new FlxSprite();
+		//private var testCircle:FlxSprite = new FlxSprite();
 		
 		override public function create():void
 		{
@@ -34,12 +34,12 @@ package
 			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
 			add(Registry.player2Satellite);
 			
-			testCircle = new FlxSprite();
-			testCircle.makeGraphic(Registry.player1Satellite.radius, Registry.player1Satellite.radius, 0x00000000);
-			testCircle.x = Registry.player1Planet.x - 45 / 2;
-			testCircle.y = Registry.player1Planet.y - 45 / 2;
-			drawCircle(testCircle, new FlxPoint(testCircle.width / 2, testCircle.height / 2), Registry.player1Satellite.radius / 2, 0xff33ff33, 1, 0x4433ff33);
-			add(testCircle);
+			//testCircle = new FlxSprite();
+			//testCircle.makeGraphic(Registry.player1Satellite.radius, Registry.player1Satellite.radius, 0x00000000);
+			//testCircle.x = Registry.player1Planet.x - 45 / 2;
+			//testCircle.y = Registry.player1Planet.y - 45 / 2;
+			//drawCircle(testCircle, new FlxPoint(testCircle.width / 2, testCircle.height / 2), Registry.player1Satellite.radius / 2, 0xff33ff33, 1, 0x4433ff33);
+			//add(testCircle);
 			
 			//Should move this to player + allow switching weapons via powerups
 			//_rocketLauncher = new RocketLauncher(Registry.player1Satellite);

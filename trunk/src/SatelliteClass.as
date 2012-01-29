@@ -1,7 +1,6 @@
 package  
 {
 	import org.flixel.*;
-	import org.flixel.plugin.photonstorm.FlxFlectrum;
 	
 	import org.flixel.FlxG;
 	import Weapons.RocketLauncher;

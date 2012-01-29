@@ -26,6 +26,7 @@ package
 		private const _PlanetEngagementRange:uint = 100;
 		private const _AlienBulletDamageToPlanet:uint = 20;
 		private const _AlienSpeedMultiplier:uint = 35;
+		private const _AlienRotationSpeed:Number = 35;
 		
 		//Variables
 		private var _targetPlayer:uint;
@@ -78,10 +79,34 @@ package
 				}
 				else
 				{
+					rotateAroundPlanet();
 					checkAttack();
 				}
 				
 				draw();
+			}
+		}
+		
+		private function rotateAroundPlanet():void
+		{
+			var distanceToPlayer:Number = getDistanceToPlayer();
+			
+			var myPosition:FlxPoint = new FlxPoint(x, y);
+			var planetPosition:FlxPoint = new FlxPoint(getPlanetXPosition(), getPlanetYPosition());
+			var degreesAngle:Number = FlxU.getAngle(myPosition, planetPosition);
+			var radianAngle:Number = (degreesAngle / 180) * Math.PI;
+			
+			angle = degreesAngle;
+			
+			if (_clockwiseRotation)
+			{
+				x += Math.cos(radianAngle) * FlxG.elapsed * _AlienRotationSpeed;
+				y += Math.sin(radianAngle) * FlxG.elapsed * _AlienRotationSpeed;
+			}
+			else
+			{
+				x -= Math.cos(radianAngle) * FlxG.elapsed * _AlienRotationSpeed;
+				y -= Math.sin(radianAngle) * FlxG.elapsed * _AlienRotationSpeed;
 			}
 		}
 		
@@ -238,10 +263,10 @@ package
 				break;
 			}
 			
-			if ((x > getPlanetXPosition() && y < getPlanetYPosition()) || (x < getPlanetXPosition() && y > getPlanetYPosition()))
-			{
-				_clockwiseRotation = false;
-			}
+			//if ((x > getPlanetXPosition() && y < getPlanetYPosition()) || (x < getPlanetXPosition() && y > getPlanetYPosition()))
+			//{
+				//_clockwiseRotation = false;
+			//}
 		}
 		
 		private function assignVelocities():void
@@ -298,7 +323,7 @@ package
 			_inRangeOfPlayer = false;
 			_fireDelayTimer = 0.0;
 			setNextFireTime();
-			_clockwiseRotation = true;
+			_clockwiseRotation = FlxG.random() < .5;
 			if (_alienGun.currentBullet != null)
 			{
 				_alienGun.currentBullet.reset(x, y);
