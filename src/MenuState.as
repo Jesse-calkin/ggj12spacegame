@@ -1,6 +1,7 @@
 package
 {
 	import org.flixel.*;
+
  
 	public class MenuState extends FlxState
 	{
@@ -13,6 +14,7 @@ package
 		private var controls:FlxSprite;
 		private var credits:FlxSprite;
 		private var tempSound:FlxSound;
+
 				
 		override public function create():void
 		{
@@ -29,11 +31,26 @@ package
 			add(controls);
 			credits = new FlxSprite(160, 298, ImageFiles.creditsImg);
 			add(credits);
+			
+			Registry.leftsnakeWiggle = new FlxSprite(50, FlxG.height - 50, ImageFiles.snakeImg); 
+			Registry.leftsnakeWiggle.loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
+			Registry.leftsnakeWiggle.addAnimation("Wiggle", [0,1,2,3], 10);
+			add(Registry.leftsnakeWiggle);
+			Registry.leftsnakeWiggle.play("Wiggle");
+			
+			Registry.rightsnakeWiggle = new FlxSprite(FlxG.width - 50, FlxG.height - 50, ImageFiles.snakeImg); 
+			Registry.rightsnakeWiggle.loadGraphic(ImageFiles.snakeImg, true, false, 15, 30);
+			Registry.rightsnakeWiggle.addAnimation("Wiggle", [0,1,2,3], 10);
+			add(Registry.rightsnakeWiggle);
+			Registry.rightsnakeWiggle.play("Wiggle");
+			
 						
 			var instructions:FlxText;
 			instructions = new FlxText(0, FlxG.height - 32, FlxG.width, "Press Space To Select");
 			instructions.setFormat (null, 8, 0xFFFFFFFF, "center");
 			add(instructions);
+			
+
  
 		} // end function create
 
