@@ -33,12 +33,11 @@ package
 			add(instructions);
  
 		} // end function create
- 
- 
+
 		override public function update():void
 		{
 			getInput();
-			
+
 			super.update(); // calls update on everything you added to the game loop 
 		} // end function update
  		
@@ -100,43 +99,22 @@ package
 		{
 			switch(menuCounter)
 			{
-				case 1:
-					//var newgameSel:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameSelImg);
-				//	add(newgameSel);
-				//	var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
-				//	add(controls);
-				//	var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
-				//	add(credits);
-					
+				case 1:		
 					newgame.loadGraphic(ImageFiles.newgameSelImg)
 					controls.loadGraphic(ImageFiles.controlsImg)
 					credits.loadGraphic(ImageFiles.creditsImg)
-					
 					break;
-				case 2:
-					//var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
-					//add(newgame);
-					//var controlsSel:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsSelImg);
-					//add(controlsSel);
-					//var credits:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsImg);
-					//add(credits);		
+				case 2:	
 					newgame.loadGraphic(ImageFiles.newgameImg)
 					controls.loadGraphic(ImageFiles.controlsSelImg)
 					credits.loadGraphic(ImageFiles.creditsImg)
 					break;
 				case 3:
-					//var newgame:FlxSprite = new FlxSprite(160, 162, ImageFiles.newgameImg);
-					//add(newgame);
-					//var controls:FlxSprite = new FlxSprite(160, 230, ImageFiles.controlsImg);
-					//add(controls);
-					//var creditsSel:FlxSprite = new FlxSprite(160, 298, ImageFiles.creditsSelImg);
-					//add(creditsSel);	
 					newgame.loadGraphic(ImageFiles.newgameImg)
 					controls.loadGraphic(ImageFiles.controlsImg)
 					credits.loadGraphic(ImageFiles.creditsSelImg)
 					break;
 			}
-
 		}
 		
 		public function MenuState()
