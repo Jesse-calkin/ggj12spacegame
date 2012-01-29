@@ -23,7 +23,7 @@ package Game.FlxStates
 			
 			var title:FlxText;
 			title = new FlxText(0, 8, FlxG.width, "Game Over");
-			title.setFormat (null, 32, 0x1A9B05, "center");
+			title.setFormat (null, 32, Registry.menulightgreen, "center");
 			add(title);
 			
 			var winnerSound:FlxSound;
@@ -33,7 +33,7 @@ package Game.FlxStates
 				var player2Win:FlxText;
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
 				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player1WinsSnd);
-				player2Win.setFormat (null, 64, 0xFF7700, "center");
+				player2Win.setFormat (null, 64, Registry.menuorange, "center");
 				add(player2Win);
 				Registry.p2score += 1;
 			}
@@ -43,7 +43,7 @@ package Game.FlxStates
 				var player1Win:FlxText;
 				player1Win = new FlxText(0, 150, FlxG.width, "Blue Player Wins!!!");
 				winnerSound = new FlxSound().loadEmbedded(SoundFiles.player2WinsSnd);
-				player1Win.setFormat (null, 64, 0x004CFF, "center");
+				player1Win.setFormat (null, 64, Registry.menublue, "center");
 				add(player1Win);
 				Registry.p1score += 1;
 			}
@@ -61,12 +61,12 @@ package Game.FlxStates
 			
 			var p1scoreText:FlxText;
 			p1scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p1score.toString());
-			p1scoreText.setFormat (null, 120, 0x004CFF, "left");
+			p1scoreText.setFormat (null, 120, Registry.menublue, "left");
 			add(p1scoreText);
 			
 			var p2scoreText:FlxText;
 			p2scoreText = new FlxText(0, FlxG.height - 130, FlxG.width, Registry.p2score.toString());
-			p2scoreText.setFormat (null, 120, 0xFF7700, "right");
+			p2scoreText.setFormat (null, 120, Registry.menuorange, "right");
 			add(p2scoreText);
  
 		} // end function create

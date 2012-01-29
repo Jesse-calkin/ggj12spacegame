@@ -4,6 +4,7 @@ package Game.FlxStates
 	
 	import Game.Utility.ImageFiles;
 	import Game.Utility.SoundFiles;
+	import Game.Utility.Registry;
 	
 	public class CreditsState extends FlxState
 	{
@@ -14,62 +15,62 @@ package Game.FlxStates
 			
 			var title:FlxText;
 			title = new FlxText(0, 8, FlxG.width, "Credits");
-			title.setFormat (null, 32, 0x1A9B05, "center");
+			title.setFormat (null, 32, Registry.menulightgreen, "center");
 			add(title);
 			//------------------------------------------------------------------------
 			var art:FlxText;
 			art = new FlxText(0, 50, FlxG.width, "Art:");
-			art.setFormat (null, 24, 0xDC1A1A, "center");
+			art.setFormat (null, 24, Registry.menuRed, "center");
 			add(art);
 			
 			var garuda:FlxText;
 			garuda = new FlxText(0, 80, FlxG.width, "Garuda Illo");
-			garuda.setFormat (null, 16, 0x34DC1A, "center");
+			garuda.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(garuda);
 			//------------------------------------------------------------------------
 			var programming:FlxText;
 			programming = new FlxText(0, 110, FlxG.width, "Programming:");
-			programming.setFormat (null, 24, 0xDC1A1A, "center");
+			programming.setFormat (null, 24, Registry.menuRed, "center");
 			add(programming);
 			
 			var brandon:FlxText;
 			brandon = new FlxText(0, 140, FlxG.width, "Brandon Davis");
-			brandon.setFormat (null, 16, 0x34DC1A, "center");
+			brandon.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(brandon);
 			
 			var caleb:FlxText;
 			caleb = new FlxText(0, 160, FlxG.width, "Caleb Smith");
-			caleb.setFormat (null, 16, 0x34DC1A, "center");
+			caleb.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(caleb);
 			
 			var jay:FlxText;
 			jay = new FlxText(0, 180, FlxG.width, "Jay Wagner");
-			jay.setFormat (null, 16, 0x34DC1A, "center");
+			jay.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(jay);
 
 			var lachlan:FlxText;
 			lachlan = new FlxText(0, 200, FlxG.width, "Lachlan McInnes");
-			lachlan.setFormat (null, 16, 0x34DC1A, "center");
+			lachlan.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(lachlan);
 			//------------------------------------------------------------------------
 			var planning:FlxText;
 			planning = new FlxText(0, 230, FlxG.width, "Planning");
-			planning.setFormat (null, 24, 0xDC1A1A, "center");
+			planning.setFormat (null, 24, Registry.menuRed, "center");
 			add(planning);		
 
 			var jessie:FlxText;
 			jessie = new FlxText(0, 260, FlxG.width, "Jesse Calkin");
-			jessie.setFormat (null, 16, 0x34DC1A, "center");
+			jessie.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(jessie);			
 			//------------------------------------------------------------------------
 			var sound:FlxText;
 			sound = new FlxText(0, 290, FlxG.width, "Sound Engineering:");
-			sound.setFormat (null, 24, 0xDC1A1A, "center");
+			sound.setFormat (null, 24, Registry.menuRed, "center");
 			add(sound);			
  
 			var robert:FlxText;
 			robert = new FlxText(0, 320, FlxG.width, "Robert Merritt");
-			robert.setFormat (null, 16, 0x34DC1A, "center");
+			robert.setFormat (null, 16, Registry.menudarkgreen, "center");
 			add(robert);
 			
 			var instructions:FlxText;
