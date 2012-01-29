@@ -301,7 +301,7 @@ package
 				{
 					Powerup.powerupsSpawned++;
 					Powerup.alienKillGoal = FlxG.random() * 6 + 7 + Powerup.powerupsSpawned * 3;
-					trace(Powerup.alienKillGoal);
+					//trace(Powerup.alienKillGoal);
 					
 					if (FlxG.random() < .5)
 					{
