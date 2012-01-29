@@ -152,12 +152,14 @@ package
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.justPressed("W"))
+			if(FlxG.keys.justPressed("W"))
+			//if (FlxG.keys.W)
 			{
 				Registry.player1Satellite.Fire();
 			}
 			
-			if (FlxG.keys.justPressed("UP") || FlxG.keys.justPressed("NUMPADEIGHT"))
+			if(FlxG.keys.justPressed("UP") || FlxG.keys.justPressed("NUMPADEIGHT"))
+			//if (FlxG.keys.UP || FlxG.keys.NUMPADEIGHT)
 			{
 				Registry.player2Satellite.Fire();
 			}
