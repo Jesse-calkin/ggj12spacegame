@@ -20,7 +20,7 @@ package Weapons
 		
 		private function initParticleSystems():void
 		{
-			_venomEmitter = new FlxEmitter(0, 0, 3);
+			_venomEmitter = new FlxEmitter(0, 0, 5);
 			_venomEmitter.exists = false;
 			
 			var particle:FlxParticle
@@ -29,7 +29,7 @@ package Weapons
 				particle = new FlxParticle();
 				particle.makeGraphic(1, 1, 0xFF00FF00);
 				particle.exists = false;
-				particle.lifespan = 1;
+				particle.lifespan = .001;
 				
 				_venomEmitter.add(particle);
 			}
