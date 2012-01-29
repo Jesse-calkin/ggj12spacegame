@@ -29,14 +29,7 @@ package
 			super(X, Y);
 			loadGraphic(ImageFiles.satelliteImg);
 			
-			origin.x = 0;
-
-			//loadRotatedGraphic(SimpleGraphic, 360,
-			//trace(origin.x + " " + origin.y);
-			//origin.x = 0;
-			//origin.y = 0;
-			//trace(origin.x + " " + origin.y);
-			
+			origin.x = 0;	
 			radius = 100;
 			
 			if (Player == 1)
@@ -57,38 +50,6 @@ package
 			_rocketLauncher = new RocketLauncher(this)
 		}
 		
-		//public function MoveClockwise():void
-		//{
-			//degree += speed;
-			//degree %= 360;
-			//radian = (degree / 180) * Math.PI;
-			//angle = degree;
-			//
-			//_rocketLauncher.setParent(this, "x", "y", Math.cos(radian) * width, height / 2 + Math.sin(radian) * height);
-			//
-			//var testPoint:FlxPoint = FlxU.rotatePoint(x + width, y + height / 2, x + origin.x, y + origin.y, angle);
-			//var testPoint:FlxPoint = FlxU.rotatePoint(x + width, y + height, x + origin.x, y + origin.y, degree);
-			//trace(x + " " + y);
-			//trace(testPoint.x + " " + testPoint.y);
-		//}
-		//
-		//public function MoveCounterclockwise():void
-		//{
-			//degree -= speed;
-			//degree %= 360;
-			//radian = (degree / 180) * Math.PI;
-			//angle = degree;
-			//
-			//_rocketLauncher.setParent(this, "x", "y", Math.cos(radian) * width, height / 2 + Math.sin(radian) * height);
-			//
-			//var pixel:FlxSprite = new FlxSprite(xcenter + Math.cos(radian) * (radius / 2 + 5), ycenter + Math.sin(radian) * (radius / 2 + 5)).makeGraphic(1, 1);
-			//FlxG.state.add(pixel);
-			//
-			//var testPoint:FlxPoint = FlxU.rotatePoint(x, y, 0, 0, degree);
-			//trace(x + " " + y);
-			//trace(testPoint.x + " " + testPoint.y);
-		//}
-		
 		public function rotate(direction:String):void
 		{
 			degree = (direction == CLOCKWISE ? degree + speed : degree - speed);
@@ -96,8 +57,8 @@ package
 			angle = degree;
 			radian = (degree / 180) * Math.PI;
 			
-			var pixel:FlxSprite = new FlxSprite(xcenter + Math.cos(radian) * (radius / 2 + 5), ycenter + Math.sin(radian) * (radius / 2 + 5)).makeGraphic(1, 1);
-			FlxG.state.add(pixel);
+			//var pixel:FlxSprite = new FlxSprite(xcenter + Math.cos(radian) * (radius / 2 + 5), ycenter + Math.sin(radian) * (radius / 2 + 5)).makeGraphic(1, 1);
+			//FlxG.state.add(pixel);
 			
 			var parentClass:FlxSprite
 			if (this == Registry.player1Satellite)
