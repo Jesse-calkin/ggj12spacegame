@@ -114,15 +114,44 @@ package Weapons
 		{
 			_propulsionEmitter.x = x + 3;
 			_propulsionEmitter.y = y + 3;
+			checkBounds();
+		}
+		
+		private function checkBounds():void
+		{
+			if ((x  > FlxG.width + 15) ||
+				(x < -10) ||
+				(y  > FlxG.height + 15) ||
+				(y < -10))
+			{
+				silentKill(); // remove rocket without explosion
+			}
 		}
 		
 		public override function kill():void
 		{
 			_propulsionEmitter.kill();
+			
 			_explosionEmitter.x = x;
 			_explosionEmitter.y = y;
 			_explosionEmitter.start(true, 1, 0.1, 0);
-			super.kill()			
+			
+			super.kill();
+		}
+		
+		public function silentKill():void
+		{
+			_propulsionEmitter.kill();
+			
+			super.kill();
+		}
+		
+		public override function destroy():void
+		{
+			_propulsionEmitter = null;
+			_explosionEmitter = null;
+
+			super.destroy();			
 		}
 		
 		public function RocketLaunched():void
