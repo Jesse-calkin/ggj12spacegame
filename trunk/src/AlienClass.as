@@ -233,6 +233,13 @@ package
 					{
 					case 1:
 						Registry.player1Planet.health -= _AlienBulletDamageToPlanet;
+						var health1Percentage:Number = Registry.player1Planet.health / 100;
+						
+						if (80 <= health1Percentage < 100)
+						{
+							
+						}
+						
 						Registry.player1Planet.flicker(0.2);
 						FlxG.shake(0.01, 0.2);
 						if (Registry.player1Planet.health <= 0 && Registry.player2Planet.alive)
@@ -242,6 +249,7 @@ package
 						break;
 					case 2:
 						Registry.player2Planet.health -= _AlienBulletDamageToPlanet;
+						var health2Percentage:Number = Registry.player2Planet.health / 100;
 						Registry.player2Planet.flicker(0.2);
 						FlxG.shake(0.01, 0.2);
 						if (Registry.player2Planet.health <= 0 && Registry.player1Planet.alive)
