@@ -16,5 +16,6 @@ package
 		[Embed(source = "../data/gfx/newgame.png")] public static var newgameImg:Class;
 		[Embed(source = "../data/gfx/newgame-sel.png")] public static var newgameSelImg:Class;
 		[Embed(source = "../data/gfx/Space-Snakes-Title.png")] public static var spacesnakesTitleImg:Class;
+		[Embed(source = "../data/gfx/Smoke.png")] public static var smokeImg:Class;
     }
 }
