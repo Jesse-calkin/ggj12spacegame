@@ -20,7 +20,7 @@ package
 			{
 				var player2Win:FlxText;
 				player2Win = new FlxText(0, 150, FlxG.width, "Orange Player Wins!!!");
-				player2Win.setFormat (null, 64, 0x00FF00, "center");
+				player2Win.setFormat (null, 64, 0xFF6600, "center");
 				add(player2Win);
 			}
 			
@@ -28,7 +28,7 @@ package
 			{
 				var player1Win:FlxText;
 				player1Win = new FlxText(0, 150, FlxG.width, "Blue Player Wins!!!");
-				player1Win.setFormat (null, 64, 0x00FF00, "center");
+				player1Win.setFormat (null, 64, 0x00CCFF, "center");
 				add(player1Win);
 			}
 
