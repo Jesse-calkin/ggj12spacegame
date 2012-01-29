@@ -77,7 +77,7 @@ package
 			super.update();
 		}	
 		
-		public function getInput():void //TODO: set up player 1 controls (WASD)
+		public function getInput():void
 		{
 			if (FlxG.keys.D)
 			{
@@ -99,12 +99,12 @@ package
 				Registry.player2Satellite.rotate(SatelliteClass.COUNTER_CLOCKWISE);
 			}
 			
-			if (FlxG.keys.W)
+			if (FlxG.keys.justPressed("W"))
 			{
 				Registry.player1Satellite.Fire();
 			}
 			
-			if (FlxG.keys.UP)
+			if (FlxG.keys.justPressed("UP"))
 			{
 				Registry.player2Satellite.Fire();
 			}
