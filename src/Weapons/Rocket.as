@@ -1,5 +1,6 @@
 package Weapons 
 {
+	import org.flixel.FlxBasic;
 	import org.flixel.FlxEmitter;
 	import org.flixel.FlxParticle;
 	import org.flixel.FlxPoint;
@@ -38,7 +39,6 @@ package Weapons
 		{
 			_explosionEmitter = new FlxEmitter(0, 0, 15);
 			_explosionEmitter.exists = false;
-			//_explosionEmitter.visible = false;
 			
 			var particle:FlxParticle
 			for (var i:int = 0; i < _explosionEmitter.maxSize; i++)
@@ -71,18 +71,16 @@ package Weapons
 		private function initPropulsionParticleSystem():void
 		{
 			_propulsionEmitter = new FlxEmitter( -100, -100, 3);
-			//_propulsionEmitter.alive = false;
 			_propulsionEmitter.exists = false;
-			//_propulsionEmitter.visible = false;
 			_propulsionEmitter.lifespan = 10;
 			_propulsionEmitter.frequency = 0.1;
 			_propulsionEmitter.setXSpeed(0, 0);
 			_propulsionEmitter.setYSpeed(0, 0);
 			
-			
+			var particle:FlxParticle
 			for(var i:int = 0; i < _propulsionEmitter.maxSize; i++)
 			{
-				var particle:FlxParticle = new FlxParticle();//Registry.ParticlePool.recycle(FlxParticle) as FlxParticle;
+				particle = new FlxParticle();//Registry.ParticlePool.recycle(FlxParticle) as FlxParticle;
 				
 				var color:uint;
 				if (i % 2 == 0)
@@ -102,7 +100,6 @@ package Weapons
 				
 				_propulsionEmitter.add(particle);
 			}
-			//FlxG.state.add(_propulsionEmitter);
 			FlxG.state.add(_propulsionEmitter);
 		}
 		

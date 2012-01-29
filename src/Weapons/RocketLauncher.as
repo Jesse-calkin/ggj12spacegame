@@ -28,6 +28,16 @@ package Weapons
 			setFireRate(_rateOfFire);
 			onFireSound = new FlxSound().loadEmbedded(SoundFiles.laserFireSnd);
 		}
+		
+		public function Fire(angle:Number):void
+		{
+			if (fireFromAngle(angle))
+			{
+				currentBullet.angle = angle + 90;
+				currentBullet.x -= 2; // correct for images
+				currentBullet.y -= 3; // correct for images	
+			}
+		}
 	}
 
 }

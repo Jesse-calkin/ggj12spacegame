@@ -86,10 +86,7 @@ package
 		
 		public function Fire():void
 		{
-			_rocketLauncher.fireFromAngle(angle);
-			_rocketLauncher.currentBullet.angle = angle + 90;
-			_rocketLauncher.currentBullet.x -= 2; // correct for images
-			_rocketLauncher.currentBullet.y -= 3; // correct for images
+			_rocketLauncher.Fire(angle);
 		}
 		
 		override public function update():void

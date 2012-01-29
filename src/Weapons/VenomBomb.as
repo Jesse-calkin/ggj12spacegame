@@ -20,7 +20,7 @@ package Weapons
 		
 		private function initParticleSystems():void
 		{
-			_venomEmitter = new FlxEmitter(0, 0, 5);
+			_venomEmitter = new FlxEmitter(0, 0, 3);
 			_venomEmitter.exists = false;
 			
 			var particle:FlxParticle
