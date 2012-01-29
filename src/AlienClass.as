@@ -21,7 +21,7 @@ package
 		private const _HoldingPositionY:int = 100;
 		private const _MinFireDelay:uint = 2;
 		private const _MaxFireDelay:uint = 4;
-		private const _SpawnDistanceFromScreen:uint = 50;
+		private const _SpawnDistanceFromScreen:uint = 80;
 		private const _SpawnDistanceFromScreenX:uint = 15;
 		private const _SpawnDistanceFromScreenY:uint = 30;
 		private const _PlanetEngagementRange:uint = 100;
@@ -37,10 +37,15 @@ package
 		private var _clockwiseRotation:Boolean;
 		private var _alienGun:VenomSpitter;
 		private var _newMob:Boolean;
+		private var warningImage:FlxSprite;
 		public var isActive:Boolean;
 		
 		public function AlienClass(targetPlayer:uint = 0, newMob:Boolean = false)
 		{
+			warningImage = new FlxSprite( -50, -50, ImageFiles.enemyWarningImg);
+			warningImage.alpha = 1;
+			FlxG.state.add(warningImage);
+			
 			super(_HoldingPositionX, _HoldingPositionY, ImageFiles.snakeImg);
 			
 			_alienGun = new VenomSpitter(this);
@@ -74,6 +79,8 @@ package
 			
 			if (isActive)
 			{
+				displayWarning();
+				
 				if (!_inRangeOfPlayer)
 				{
 					super.update();
@@ -93,6 +100,35 @@ package
 				
 				draw();
 			}
+		}
+		
+		private function displayWarning():void
+		{
+			if ((x < 0 || x > FlxG.width) || (y < 0 || y > FlxG.height))
+			{
+				if (y < 0)
+				{
+					warningImage.y = 0 - warningImage.height / 2;
+					warningImage.x = x - warningImage.width / 2;
+				}
+				else if (y > FlxG.height)
+				{
+					warningImage.y = FlxG.height - warningImage.height / 2;
+					warningImage.x = x - warningImage.width / 2;
+				}
+				else if (x < 0)
+				{
+					warningImage.x = 0 - warningImage.width / 2;
+					warningImage.y = y - warningImage.height / 2;
+				}
+				else if (x > FlxG.width)
+				{
+					warningImage.x = FlxG.width - warningImage.width / 2;
+					warningImage.y = y + warningImage.height / 2;
+				}
+			}
+			
+			warningImage.alpha -= FlxG.elapsed / 3;
 		}
 		
 		private function rotateAroundPlanet():void
@@ -338,6 +374,7 @@ package
 			{
 				_alienGun.currentBullet.reset(x, y);
 			}
+			warningImage.alpha = 1;
 		}
 		
 		private function getDistanceToPlayer():Number
