@@ -20,15 +20,15 @@ package Weapons
 		
 		private function initParticleSystems():void
 		{
-			_venomEmitter = new FlxEmitter(0, 0, 4);
-			_venomEmitter.visible = false;
+			_venomEmitter = new FlxEmitter(0, 0, 3);
+			_venomEmitter.exists = false;
 			
 			var particle:FlxParticle
 			for (var i:int = 0; i < _venomEmitter.maxSize; i++)
 			{
 				particle = new FlxParticle();
 				particle.makeGraphic(1, 1, 0xFF00FF00);
-				particle.visible = false;
+				particle.exists = false;
 				particle.lifespan = 1;
 				
 				_venomEmitter.add(particle);

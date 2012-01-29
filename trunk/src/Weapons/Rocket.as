@@ -37,7 +37,8 @@ package Weapons
 		private function initExplosionParticleSystem():void
 		{
 			_explosionEmitter = new FlxEmitter(0, 0, 15);
-			_explosionEmitter.visible = false;
+			_explosionEmitter.exists = false;
+			//_explosionEmitter.visible = false;
 			
 			var particle:FlxParticle
 			for (var i:int = 0; i < _explosionEmitter.maxSize; i++)
@@ -59,7 +60,7 @@ package Weapons
 				}
 				
 				particle.makeGraphic(2, 2, color);
-				particle.visible = false;
+				particle.exists = false;
 				particle.lifespan = 1;
 				
 				_explosionEmitter.add(particle);
@@ -70,7 +71,9 @@ package Weapons
 		private function initPropulsionParticleSystem():void
 		{
 			_propulsionEmitter = new FlxEmitter( -100, -100, 3);
-			_propulsionEmitter.visible = false;
+			//_propulsionEmitter.alive = false;
+			_propulsionEmitter.exists = false;
+			//_propulsionEmitter.visible = false;
 			_propulsionEmitter.lifespan = 10;
 			_propulsionEmitter.frequency = 0.1;
 			_propulsionEmitter.setXSpeed(0, 0);
@@ -92,7 +95,7 @@ package Weapons
 				}
 				
 				particle.makeGraphic(_propulsionParticalSize, _propulsionParticalSize, color);
-				particle.visible = false;
+				particle.exists = false;
 				particle.lifespan = 0.1;
 				particle.acceleration.x = acceleration.x;
 				particle.acceleration.y = acceleration.y;
