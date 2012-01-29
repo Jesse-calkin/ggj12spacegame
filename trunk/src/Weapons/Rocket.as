@@ -4,49 +4,62 @@ package Weapons
 	import org.flixel.FlxParticle;
 	import org.flixel.plugin.photonstorm.BaseTypes.Bullet;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
-	
+
 	public class Rocket extends Bullet
 	{
 		public var _propulsionEmitter:FlxEmitter;
-		//private var _propulsionParticles:Array;
-		//private var _explosionParticle:FlxParticle;
+		private var dmg:int = 1;
 		
 		public function Rocket(weapon:FlxWeapon, id:uint)
 		{
 			super(weapon, id);
+		
 			//initParticleSystem();
 		}
 		
-		/*private function initParticleSystem()
+		public function GetDmg():int
 		{
-			_propulsionEmitter = new FlxEmitter(this.x, this.y, 5);
-			_propulsionEmitter.add(new FlxParticle().makeGraphic(2, 2, 0xFFFF0000));
-			_propulsionEmitter.add(new FlxParticle().makeGraphic(2, 2, 0xFFFFFF00));
-		}*/
+			return dmg;
+		}
 		
-		/*private function initPropulsionParticles() {
-			_propulsionParticles[0] = new FlxParticle();
-			_propulsionParticles[0].makeGraphic(2, 2, 0xFFFF0000);
-			_propulsionParticles[1] = new FlxParticle();
-			_propulsionParticles[1].makeGraphic(2, 2, 0xFFFFFF00);
-		}*/
-		
-		/*override public function update():void
+		private function initParticleSystem():void
 		{
-			_propulsionEmitter.emitParticle();
+			_propulsionEmitter = new FlxEmitter(200, 200, 4);
+			_propulsionEmitter.lifespan = 10;
+			_propulsionEmitter.frequency = 0.1;
+			_propulsionEmitter.setXSpeed(0, 0);
+			_propulsionEmitter.setYSpeed(0, 0);
 			
-			super.update()
-		}*/
-		
-		/*private function initExplosionParticles() {
-			//TODO: //
+			var particle:FlxParticle;
+			for(var i:int = 0; i < _propulsionEmitter.maxSize; i++)
+			{
+				particle = new FlxParticle();
+				if (i % 2 == 0)
+				{
+					particle.makeGraphic(20, 25, 0xffff00ff);
+				}
+				else
+				{
+					particle.makeGraphic(23, 23, 0xff00ff00);
+				}
+				
+				_propulsionEmitter.add(particle);
+			}
 			
-		}*/
+			Registry.MetaEmitterGroup.add(_propulsionEmitter);
+		}
 		
-		/*override public function kill():void 
+		override public function fireFromAngle(fromX:int, fromY:int, fireAngle:int, speed:int):void 
 		{
+			super.fireFromAngle(fromX, fromY, fireAngle, speed);
 			
-			super.kill();
-		}*/
+			//RocketLaunched();
+		}
+		
+		public function RocketLaunched():void
+		{
+			trace("launched");
+			_propulsionEmitter.start(false,1,0.1);
+		}
 	}		
 }

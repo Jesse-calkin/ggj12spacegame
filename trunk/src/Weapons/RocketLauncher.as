@@ -3,6 +3,7 @@ package Weapons
 	import org.flixel.FlxPoint;
 	import org.flixel.FlxRect;
 	import org.flixel.FlxSound;
+	import org.flixel.FlxG;
 	import org.flixel.plugin.photonstorm.FlxWeapon;
 	import ImageFiles;
 	import SatelliteClass;
@@ -22,12 +23,11 @@ package Weapons
 		public function RocketLauncher(satellite:SatelliteClass) 
 		{
 			super("RocketLauncher");
-			makeImageBullet(_rocketCount, Rocket, ImageFiles.rocketImg, 5, 0, true, 360);
+			makeImageBullet(_rocketCount, Rocket, ImageFiles.rocketImg, 0, 0);
 			setBulletSpeed(_startRocketSpeed);
 			setBulletAcceleration(_rocketAcceleration.x, _rocketAcceleration.y, _maxRocketSpeed.x, _maxRocketSpeed.y);
-			setBulletBounds(new FlxRect(0, 0, 800, 400)); // be nice to pass from play state or wherever
-			setFireRate(_rateOfFire);		
-			setParent(satellite, "x", "y", satellite.width, satellite.height / 2 - 1);
+			setBulletBounds(FlxG.worldBounds);
+			setFireRate(_rateOfFire);
 			onFireSound = new FlxSound().loadEmbedded(SoundFiles.laserFireSnd);
 		}
 	}
