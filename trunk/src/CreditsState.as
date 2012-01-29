@@ -82,6 +82,9 @@ package
  
 			if (FlxG.keys.justPressed("SPACE"))
 			{
+				var temp:FlxSound;
+				temp = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
+				temp.play();
 				FlxG.switchState(new MenuState());
 			}
  

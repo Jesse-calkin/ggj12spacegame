@@ -4,6 +4,8 @@ package
  
 	public class EndGameState extends FlxState
 	{
+		private var tempSound:FlxSound;
+		
 		override public function create():void
 		{
 			FlxG.stream("../data/sounds/music/game over.mp3", 0.5, true);
@@ -53,11 +55,15 @@ package
  
 			if (FlxG.keys.justPressed("SPACE"))
 			{
+				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
+				tempSound.play();
 				FlxG.switchState(new MenuState());
 			}
 			
 			if (FlxG.keys.justPressed("R"))
 			{
+				tempSound = new FlxSound().loadEmbedded(SoundFiles.menuSelectSnd);
+				tempSound.play();
 				FlxG.switchState(new PlayState());
 			}
  

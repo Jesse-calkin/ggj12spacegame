@@ -15,5 +15,7 @@ package
 		[Embed(source = "../data/sounds/satalite/tractor beam.mp3")]public static var tractorBeamSnd:Class
 		[Embed(source = "../data/sounds/win/Player_one_wins.mp3")]public static var player1WinsSnd:Class
 		[Embed(source = "../data/sounds/win/Player_two_wins.mp3")]public static var player2WinsSnd:Class
+		[Embed(source = "../data/sounds/menu/menu_move.mp3")]public static var menuMoveSnd:Class
+		[Embed(source = "../data/sounds/menu/menu_select.mp3")]public static var menuSelectSnd:Class
     }
 }
