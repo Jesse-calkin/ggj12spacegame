@@ -45,10 +45,10 @@ package
 			Registry.player2Planet.health = 100;
 			add(Registry.player2Planet);
 			
-			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			Registry.player1Satellite = new SatelliteClass(1, 200 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
 			add(Registry.player1Satellite);
 			
-			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg)
+			Registry.player2Satellite = new SatelliteClass(2, 600 - 55 / 2 , (FlxG.height / 2) - 55 / 2, ImageFiles.satelliteImg);
 			add(Registry.player2Satellite);
 			
 			Registry.topShieldSpawner = powerupSpawnerSetup(true, new Shield());
@@ -141,13 +141,13 @@ package
 		
 		override public function update():void
 		{
-			/*Registry.player1Satellite.velocity.x = 0;
-			Registry.player1Satellite.velocity.y = 0;
-			Registry.player1Satellite.angularVelocity = 0;
+			//Registry.player1Satellite.velocity.x = 0;
+			//Registry.player1Satellite.velocity.y = 0;
+			Registry.player1Satellite.angularAcceleration = 0;
 			
-			Registry.player2Satellite.velocity.x = 0;
-			Registry.player2Satellite.velocity.y = 0;
-			Registry.player2Satellite.angularVelocity = 0;*/
+			//Registry.player2Satellite.velocity.x = 0;
+			//Registry.player2Satellite.velocity.y = 0;
+			Registry.player2Satellite.angularAcceleration = 0;
 			
 			getInput();
 			FlxG.overlap(Registry.player1Satellite._rocketLauncher.group, alienGroup, AlienHit);
@@ -195,6 +195,16 @@ package
 			if (FlxG.keys.UP || FlxG.keys.NUMPADEIGHT)
 			{
 				Registry.player2Satellite.Fire();
+			}
+			
+			if (Registry.player1Satellite.angularAcceleration == 0)
+			{
+				Registry.player1Satellite.idle();
+			}
+			
+			if (Registry.player2Satellite.angularAcceleration == 0)
+			{
+				Registry.player1Satellite.idle();
 			}
 			
 		}

@@ -38,6 +38,8 @@ package
 			powerupTime = 0;
 			radius = 100;
 			_angularAcceleration = 300;
+			angularDrag = 300;
+			maxAngular = 100;
 			
 			shieldSprite.makeGraphic(radius, radius, 0x00000000);
 			
