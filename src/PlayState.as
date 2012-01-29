@@ -17,7 +17,7 @@ package
 		{
 			FlxG.bgColor = 0xffaaaaaa;
 			
-			FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
+			//FlxG.stream("../data/sounds/music/Theme.mp3", 0.5, true);
 			
 			Powerup.powerupsSpawned = 0;
 			Powerup.alienKillGoal = FlxG.random() * 6 + 7;
@@ -163,6 +163,7 @@ package
 			
 			if (isGameOver())
 			{
+				Registry.backgroundtheme.stop();
 				FlxG.switchState(new EndGameState());
 			}
 			

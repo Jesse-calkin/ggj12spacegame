@@ -22,6 +22,8 @@ package
 		public static var timer:FlxDelay;
 		public static var leftsnakeWiggle:FlxSprite;
 		public static var rightsnakeWiggle:FlxSprite;
+		public static var backgroundtheme:FlxSound;
+		public static var endgameTheme:FlxSound;
 		
 		public function Registry()
 		{
